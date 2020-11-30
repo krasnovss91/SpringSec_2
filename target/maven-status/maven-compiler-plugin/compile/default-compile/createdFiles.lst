@@ -1,0 +1,6 @@
+web/controller/UserController.class
+web/config/AppInit.class
+web/config/SecurityConfig.class
+web/config/WebConfig.class
+web/config/handler/LoginSuccessHandler.class
+web/config/SpringSecurityInitializer.class
