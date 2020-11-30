@@ -1,6 +1,9 @@
+web/model/Authorities.class
+web/config/WebConfig.class
+web/config/JPAConfig.class
 web/controller/UserController.class
+web/model/User.class
 web/config/AppInit.class
 web/config/SecurityConfig.class
-web/config/WebConfig.class
 web/config/handler/LoginSuccessHandler.class
 web/config/SpringSecurityInitializer.class
