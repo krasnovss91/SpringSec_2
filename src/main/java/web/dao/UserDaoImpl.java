@@ -1,10 +1,19 @@
 package web.dao;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import web.model.User;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class UserDaoImpl implements UserDao {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public User findUserByUsername(String username) {
         return null;
@@ -12,6 +21,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
+        sessionFactory.getCurrentSession().save(user);
+        if (user.getCar() != null) {
+            sessionFactory.getCurrentSession().save(user.getCar());
+        }
 
     }
 
@@ -22,7 +35,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.getResultList();
     }
 
     @Override
