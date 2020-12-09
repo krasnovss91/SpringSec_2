@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
@@ -15,14 +16,16 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public User findUserByUsername(String username) {
-        return null;
+    public User findUserByUsername(String name) {
+        String hql =" FROM User WHERE username=:name";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("name",name);
+        return (User) query.getSingleResult();
     }
 
     @Override
     public void saveUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
-        if (user.getUsername() != null) {
+     //   sessionFactory.getCurrentSession().save(user);
+        if (user.getUsername() == null) {
             sessionFactory.getCurrentSession().save(user);
         }
 
@@ -41,11 +44,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-
+        if (user.getUsername() != null) {
+            sessionFactory.getCurrentSession().save(user);
+        }
     }
 
     @Override
     public void deleteUser(long id) {
-
+      sessionFactory.getCurrentSession().delete(getUserById(id));//getUserById(id)
     }
 }
