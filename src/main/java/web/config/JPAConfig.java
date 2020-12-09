@@ -24,39 +24,12 @@ import java.util.Properties;
 public class JPAConfig {
     @Autowired
     private Environment env;
-/*
-    @Bean
-    public DataSource getDataSource() {
 
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url"));
-        dataSource.setUsername(env.getProperty("db.username"));
-        dataSource.setPassword(env.getProperty("db.password"));
-
-        return dataSource;
-    }
-
-    @Bean
-    public LocalSessionFactoryBean getSessionFactory() {
-        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-        factoryBean.setDataSource(getDataSource());
-
-        Properties props = new Properties();
-        props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-
-        factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(User.class);
-        return factoryBean;
-    }
-*/
 @Bean
 public SessionFactory getSessionFactory() {
     LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
     builder
-            .scanPackages("com.mkyong.users.model")
+            .scanPackages("web.model")
             .addProperties(getHibernateProperties());
 
     return builder.buildSessionFactory();
@@ -80,25 +53,11 @@ public SessionFactory getSessionFactory() {
         ds.setPassword("password");
         return ds;
     }
-    /*
-    @Bean
-    public HibernateTransactionManager getTransactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(getSessionFactory().getObject());
-        return transactionManager;
-    }
- */
+
     @Bean
     public HibernateTransactionManager txManager() {
         return new HibernateTransactionManager(getSessionFactory());
     }
 
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/pages/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
+
 }
