@@ -18,15 +18,17 @@ public class DaoController {
     @RequestMapping(value = "test", method = RequestMethod.GET)
 
     public String printWelcome(ModelMap model) {
-
+/*
         if (dao.getAllUsers().isEmpty() == false) {
             List<String> messages = new ArrayList<>();
             messages.add("Yes, it's work!");
             model.addAttribute("messages", messages);
         }
 
-
+ */
             return "test";
+
+
     }
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
