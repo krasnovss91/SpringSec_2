@@ -14,8 +14,9 @@ import java.util.List;
 public class DaoController {
 
     UserDaoImpl dao = new UserDaoImpl();
-    /*
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
+
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+
     public String printWelcome(ModelMap model) {
 
         if (dao.getAllUsers().isEmpty() == false) {
@@ -27,7 +28,7 @@ public class DaoController {
 
             return "test";
     }
-*/
+
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String testPage() {
         return "test";
