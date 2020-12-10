@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class DaoController {
+    /*
     UserDaoImpl dao = new UserDaoImpl();
     @RequestMapping(value = "hello", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
@@ -27,4 +28,6 @@ public class DaoController {
     public String testPage() {
         return "test";
     }
+    
+     */
 }
