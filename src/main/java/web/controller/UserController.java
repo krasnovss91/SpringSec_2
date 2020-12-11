@@ -12,19 +12,26 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class UserController {
+	UserDaoImpl dao = new UserDaoImpl();
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		List<String> messages = new ArrayList<>();
+		/*
 		messages.add("Hello!");
 		messages.add("I'm Spring MVC-SECURITY application");
 		messages.add("5.2.0 version by sep'19 ");
 		model.addAttribute("messages", messages);
+		 */
+		if (dao.getAllUsers().isEmpty() == false) {
+			messages.add("Yes, it's work!");
+			model.addAttribute("messages", messages);
+		}
 		return "hello";
 	}
 
-	UserDaoImpl dao = new UserDaoImpl();
 
+/*
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 
 	public String testDao(ModelMap model) {
@@ -36,7 +43,7 @@ public class UserController {
 		}
 		return "test";
 	}
-
+*/
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
