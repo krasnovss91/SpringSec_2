@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class UserController {
-	UserDaoImpl dao;
+	private UserDaoImpl userDao;
+
+	@Autowired
+	public UserController(UserDaoImpl userDao) {
+		this.userDao = userDao;
+	}
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
@@ -23,7 +29,7 @@ public class UserController {
 		messages.add("5.2.0 version by sep'19 ");
 		model.addAttribute("messages", messages);
 		 */
-		if (dao.getAllUsers().isEmpty() == false) {
+		if (userDao.getAllUsers().isEmpty() == false) {
 			messages.add("Yes, it's work!");
 			model.addAttribute("messages", messages);
 		}
