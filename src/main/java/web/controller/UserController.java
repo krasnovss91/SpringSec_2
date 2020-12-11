@@ -12,12 +12,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class UserController {
-	UserDaoImpl dao = new UserDaoImpl();
+	UserDaoImpl dao;
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		List<String> messages = new ArrayList<>();
-		/*
+     /*
 		messages.add("Hello!");
 		messages.add("I'm Spring MVC-SECURITY application");
 		messages.add("5.2.0 version by sep'19 ");
@@ -27,6 +27,8 @@ public class UserController {
 			messages.add("Yes, it's work!");
 			model.addAttribute("messages", messages);
 		}
+
+
 		return "hello";
 	}
 
