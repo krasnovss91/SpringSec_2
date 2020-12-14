@@ -1,5 +1,7 @@
 package web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import web.dao.UserDao;
 import web.dao.UserDaoImpl;
 import web.model.User;
 
@@ -7,36 +9,41 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    UserDaoImpl dao = new UserDaoImpl();
+   private UserDao userDao;
+
+   @Autowired
+   public UserServiceImpl(UserDao userDao) {
+       this.userDao = userDao;
+   }
 
     @Override
     public void saveUser(User user) {
-        dao.saveUser(user);
+        userDao.saveUser(user);
     }
 
     @Override
     public User getUserById(long id) {
 
-        return dao.getUserById(id);
+        return userDao.getUserById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return dao.getAllUsers();
+        return userDao.getAllUsers();
     }
 
     @Override
     public void editUser(User user) {
-        dao.editUser(user);
+        userDao.editUser(user);
     }
 
     @Override
     public void deleteUser(long id) {
-        dao.deleteUser(id);
+        userDao.deleteUser(id);
     }
 
     @Override
     public User findUserByName(String name) {
-        return dao.findUserByUsername(name);
+        return userDao.findUserByUsername(name);
     }
 }
