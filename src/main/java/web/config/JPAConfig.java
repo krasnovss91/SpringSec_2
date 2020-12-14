@@ -46,7 +46,7 @@ public SessionFactory getSessionFactory() {
 
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/db-demo");
+        ds.setUrl("jdbc:mysql://localhost:3306/db_demo?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC");
         ds.setUsername("root");
         ds.setPassword("password");
         return ds;
