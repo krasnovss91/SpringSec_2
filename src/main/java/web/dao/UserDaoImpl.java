@@ -15,6 +15,14 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+/*
+   private UserDao userDao;
+
+   @Autowired
+   public UserServiceImpl(UserDao userDao) {
+       this.userDao = userDao;
+   }
+ */
     @Override
     public User findUserByUsername(String name) {
         String hql =" FROM User WHERE username=:name";
