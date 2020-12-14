@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.dao.UserDao;
+import web.service.UserService;
 
 
 import java.util.ArrayList;
@@ -14,11 +15,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class UserController {
-	private UserDao userDao;
+	private UserService userService;
 
 	@Autowired
-	public UserController(UserDao userDao) {
-		this.userDao = userDao;
+	public UserController(UserService userService) {
+
+		this.userService = userService;
 	}
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
@@ -30,7 +32,7 @@ public class UserController {
 		messages.add("5.2.0 version by sep'19 ");
 		model.addAttribute("messages", messages);
 		 */
-		if (userDao.getAllUsers().isEmpty() == false) {
+		if (userService.getAllUsers().isEmpty() == false) {
 			messages.add("Yes, it's work!");
 			model.addAttribute("messages", messages);
 		}
