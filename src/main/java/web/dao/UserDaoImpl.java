@@ -6,27 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    public UserDaoImpl(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-    }
 
-/*
-   private UserDao userDao;
-
-   @Autowired
-   public UserServiceImpl(UserDao userDao) {
-       this.userDao = userDao;
-   }
- */
     @Override
     public User findUserByUsername(String name) {
         String hql =" FROM User WHERE username=:name";
