@@ -37,19 +37,7 @@ public class UserController {
 	}
 
 
-/*
-	@RequestMapping(value = "test", method = RequestMethod.GET)
 
-	public String testDao(ModelMap model) {
-
-		if (dao.getAllUsers().isEmpty() == false) {
-			List<String> messages = new ArrayList<>();
-			messages.add("Yes, it's work!");
-			model.addAttribute("messages", messages);
-		}
-		return "test";
-	}
-*/
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
