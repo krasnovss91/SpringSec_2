@@ -2,7 +2,9 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.dao.UserDao;
@@ -15,27 +17,26 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class UserController {
-	private UserService userService;
+    private UserService userService;
 
-	@Autowired
-	public UserController(UserService userService) {
+    @Autowired
+    public UserController(UserService userService) {
 
-		this.userService = userService;
-	}
+        this.userService = userService;
+    }
 
-	@RequestMapping(value = "hello", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
-		List<String> messages = new ArrayList<>();
+    @RequestMapping(value = "hello", method = RequestMethod.GET)
+    public String printWelcome(ModelMap model) {
+        List<String> messages = new ArrayList<>();
 
-		if (userService.getAllUsers().isEmpty() == false) {
-			messages.add("Yes, it's work!");
-			model.addAttribute("messages", messages);
-		}
+        if (userService.getAllUsers().isEmpty() == false) {
+            messages.add("Yes, it's work!");
+            model.addAttribute("messages", messages);
+        }
 
 
-		return "hello";
-	}
-
+        return "hello";
+    }
 
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -43,4 +44,10 @@ public class UserController {
         return "login";
     }
 
+
+	@GetMapping("/user")
+	public String showUsers(Model model){
+		model.addAttribute("users",userService.getAllUsers());
+		return "user";
+	}
 }
