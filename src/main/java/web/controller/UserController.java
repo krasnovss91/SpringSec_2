@@ -75,4 +75,11 @@ public String addUser(@ModelAttribute User user) {
         userService.editUser(user);
         return "redirect:/admin";
     }
+
+    @GetMapping("admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id); //id заменить на имя пользователя
+        return "redirect:/admin";
+
+    }
 }
