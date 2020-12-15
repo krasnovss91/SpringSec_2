@@ -23,14 +23,14 @@
             <th:block th:each="user : ${listUsers}">
                 <tr>
                     <td>
-                        <a th:href="@{/showUsewForm/{name}(name=${user.id})}" th:text="${user.username}"></a>
+                        <a th:href="@{/showUsewForm/{name}(name=${user.username})}" th:text="${user.username}"></a>
                     </td>
                     <td th:text="${user.password}"></td>
                     <td>
-                        <a th:href="@{/showUserForm/edit/{name}(name=${user.id})}">edit</a>
+                        <a th:href="@{/showUserForm/edit/{name}(name=${user.username})}">edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/showUserForm/delete/{name}(name=${user.id})}">delete</a>
+                        <a th:href="@{/showUserForm/delete/{name}(name=${user.username})}">delete</a>
                     </td>
                 </tr>
             </th:block>
