@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.dao.UserDao;
@@ -34,7 +35,6 @@ public class UserController {
             model.addAttribute("messages", messages);
         }
 
-
         return "hello";
     }
 
@@ -47,7 +47,15 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String showUsers(Model model){
-		model.addAttribute("users",userService.getAllUsers());
+		model.addAttribute("list-of-users",userService.getAllUsers());
 		return "user";
 	}
+/*
+    @GetMapping("/{id}")
+    public String userData(@PathVariable long id, Model model) {
+        model.addAttribute("user", this.userService.getUserById(id));
+        return "user";
+    }
+
+ */
 }
