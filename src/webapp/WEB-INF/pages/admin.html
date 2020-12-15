@@ -22,11 +22,9 @@
             </tr>
             <th:block th:each="user : ${listUsers}">
                 <tr>
-                    <td th:text="${user.id}"></td>
                     <td>
                         <a th:href="@{/showUsewForm/{id}(id=${user.id})}" th:text="${user.username}"></a>
                     </td>
-                    <td th:text="${user.login}"></td>
                     <td th:text="${user.password}"></td>
                     <td>
                         <a th:href="@{/showUserForm/edit/{id}(id=${user.id})}">edit</a>
