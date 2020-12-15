@@ -47,7 +47,12 @@ public class UserController {
 
 	@GetMapping("/user")
 	public String showUsers(Model model){
+        List<String> messages = new ArrayList<>();
 		model.addAttribute("list-of-users",userService.getAllUsers());
+        if (userService.getAllUsers().isEmpty() == false) {
+            messages.add("DB is not empty!");
+            model.addAttribute("messages", messages);
+        }
 		return "user";
 	}
 /*
