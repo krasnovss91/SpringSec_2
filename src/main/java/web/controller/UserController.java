@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.dao.UserDao;
+import web.model.User;
 import web.service.UserService;
 
 
@@ -49,20 +50,15 @@ public class UserController {
 	public String showUsers(Model model){
         List<String> messages = new ArrayList<>();
 		model.addAttribute("users",userService.getAllUsers());
-		/*
-        if (userService.getAllUsers().isEmpty() == false) {
-            messages.add("DB is not empty!");
-            model.addAttribute("messages", messages);
-        }
-        */
+
 		return "user";
 	}
-/*
-    @GetMapping("/{id}")
-    public String userData(@PathVariable long id, Model model) {
-        model.addAttribute("user", this.userService.getUserById(id));
-        return "user";
+
+    @GetMapping("/admin")
+    public String showUserForm(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("listUsers", userService.getAllUsers());
+        return "admin";
     }
 
- */
 }

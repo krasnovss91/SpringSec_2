@@ -24,7 +24,7 @@
                 <tr>
                     <td th:text="${user.id}"></td>
                     <td>
-                        <a th:href="@{/showUsewForm/{id}(id=${user.id})}" th:text="${user.name}"></a>
+                        <a th:href="@{/showUsewForm/{id}(id=${user.id})}" th:text="${user.username}"></a>
                     </td>
                     <td th:text="${user.login}"></td>
                     <td th:text="${user.password}"></td>
@@ -44,7 +44,7 @@
         <h1>add user form</h1>
         <form class="tg" action="#" th:action="@{showUserForm/add}"  th:object="${user}" method="post">
             <p><input type="hidden" th:field="*{id}"/></p>
-            <p>name: <input type="text" th:field="*{name}" required/></p>
+            <p>name: <input type="text" th:field="*{username}" required/></p>
             <p>login: <input type="text" th:field="*{login}" required/></p>
             <p>password: <input type="text" th:field="*{password}" required/></p>
             <p>
