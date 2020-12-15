@@ -78,7 +78,7 @@ public String addUser(@ModelAttribute User user) {
 
     @GetMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
-        userService.deleteUser(username); 
+        userService.deleteUser(username);
         return "redirect:/admin";
 
     }
