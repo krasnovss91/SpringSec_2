@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import web.dao.UserDao;
 import web.model.User;
 import web.service.UserService;
@@ -60,5 +57,22 @@ public class UserController {
         model.addAttribute("listUsers", userService.getAllUsers());
         return "admin";
     }
+
 //искать юзеров по имени
+
+@PostMapping("admin/add")
+public String addUser(@ModelAttribute User user) {
+    if (user.getUsername() == null) {
+        userService.saveUser(user);
+    } else {
+        userService.editUser(user);
+    }
+    return "redirect:/admin";
+}
+
+    @PostMapping("admin/edit")
+    public String editUser(@ModelAttribute("editUser") User user) {
+        userService.editUser(user);
+        return "redirect:/admin";
+    }
 }
