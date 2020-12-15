@@ -41,9 +41,7 @@
     <div>
         <h1>add user form</h1>
         <form class="tg" action="#" th:action="@{showUserForm/add}"  th:object="${user}" method="post">
-            <p><input type="hidden" th:field="*{id}"/></p>
             <p>name: <input type="text" th:field="*{username}" required/></p>
-            <p>login: <input type="text" th:field="*{login}" required/></p>
             <p>password: <input type="text" th:field="*{password}" required/></p>
             <p>
                 <input type="submit" value="Submit" />
