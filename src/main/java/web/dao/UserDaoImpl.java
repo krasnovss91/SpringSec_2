@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-        if (user.getUsername() != null) {
+        if (user.getUsername() != null) {//проблема в этой строке. Сравнить передаваемого в метод юзера с юзером из базы
             sessionFactory.getCurrentSession().save(user);
         }
     }

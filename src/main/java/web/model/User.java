@@ -19,8 +19,8 @@ public class User {
 
     @Column(name = "PASSWORD")
     private String password;
-
-    @Column(name = "ENABLED", nullable = false)
+//nullable = false
+    @Column(name = "ENABLED")
     private boolean enabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
