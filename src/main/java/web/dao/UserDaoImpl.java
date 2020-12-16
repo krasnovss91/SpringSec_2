@@ -48,7 +48,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-        if (user.getUsername() != null) {//проблема в этой строке. Сравнить передаваемого в метод юзера с юзером из базы
+
+        String name = user.getUsername();
+        User user1 = findUserByUsername(name);
+
+        if (user.getUsername().equals(user1.getUsername())){
+   //     if (user.getUsername() != null) {//проблема в этой строке. Сравнить передаваемого в метод юзера с юзером из базы
             sessionFactory.getCurrentSession().save(user);
         }
     }
