@@ -70,7 +70,7 @@ public String addUser(@ModelAttribute User user) {
     return "redirect:/admin";
 }
 
-    @PostMapping("admin/edit/{username}")
+    @RequestMapping("admin/edit/{username}")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/admin";
