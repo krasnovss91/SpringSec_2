@@ -1,6 +1,8 @@
 package web.dao;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,13 +50,24 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-
+/*
         String name = user.getUsername();
         User user1 = findUserByUsername(name);
 
         if (user.getUsername().equals(user1.getUsername())){
    //     if (user.getUsername() != null) {//проблема в этой строке. Сравнить передаваемого в метод юзера с юзером из базы
             sessionFactory.getCurrentSession().save(user);
+        }
+ */
+        Session session = sessionFactory.getCurrentSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(user);
+            tx.commit();
+
+        } catch (RuntimeException e) {
+            tx.rollback();
         }
     }
 
