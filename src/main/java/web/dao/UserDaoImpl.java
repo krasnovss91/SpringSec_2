@@ -47,15 +47,22 @@ public class UserDaoImpl implements UserDao {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
-
     @Override
     public void editUser(User user) {
+
+    }
+/*
+    @Override
+    public void editUser(User user) {
+        /*
         try {
             sessionFactory.getCurrentSession().update(user);
         } catch (Exception e){
             e.printStackTrace();
         }
-/*
+
+
+
         String name = user.getUsername();
         User user1 = findUserByUsername(name);
 
@@ -76,10 +83,10 @@ public class UserDaoImpl implements UserDao {
             tx.rollback();
             e.printStackTrace();
         }
-         */
+
 
     }
-
+*/
     @Override
     public void deleteUser(String name) {
         sessionFactory.getCurrentSession().delete(findUserByUsername(name));

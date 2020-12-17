@@ -20,7 +20,7 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 //nullable = false
-    @Column(name = "ENABLED")
+    @Column(name = "ENABLED",nullable = false)
     private boolean enabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
