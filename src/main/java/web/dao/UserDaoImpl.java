@@ -65,9 +65,11 @@ public class UserDaoImpl implements UserDao {
             tx = session.beginTransaction();
             session.update(user);
             tx.commit();
+            session.flush();
 
         } catch (RuntimeException e) {
             tx.rollback();
+            e.printStackTrace();
         }
     }
 
