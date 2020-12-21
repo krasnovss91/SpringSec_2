@@ -51,44 +51,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void editUser(User user) {
         sessionFactory.getCurrentSession().save(user);
-
-/*
-    @Override
-    public void editUser(User user) {
-        /*
-        try {
-            sessionFactory.getCurrentSession().update(user);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-
-       String name = user.getUsername();
-        User user1 = findUserByUsername(name);
-
-        if (user.getUsername().equals(user1.getUsername())) {
-              //  if (user.getUsername() != null) {//проблема в этой строке. Сравнить передаваемого в метод юзера с юзером из базы
-            sessionFactory.getCurrentSession().save(user);
-        }
-
-        Session session = sessionFactory.getCurrentSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-           // session.update(user);
-            session.save(user);
-            tx.commit();
-            session.flush();
-        } catch (RuntimeException e) {
-            tx.rollback();
-            e.printStackTrace();
-        }
-
-
-    }
-*/
-
+        
     }
 
     @Override
