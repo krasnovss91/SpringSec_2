@@ -62,16 +62,16 @@ public class UserController {
 
 @PostMapping("admin/add")
 public String addUser(@ModelAttribute User user) {
-    userService.saveUser(user);
-/*
+   // userService.saveUser(user);
+
     if (user.getUsername() == null) {
         userService.saveUser(user); // проблему искать здесь. Сравнить передаваемого в метод юзера с юзером из бд
     } else {
         userService.editUser(user);
     }
-
     return "redirect:/admin";
 }
+
 
     @RequestMapping("admin/edit/{username}")
     public String editUser(@ModelAttribute("editUser") User user) {
@@ -82,7 +82,7 @@ public String addUser(@ModelAttribute User user) {
     @GetMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);
-        */
+
          return "redirect:/admin";
 
     }
