@@ -64,7 +64,7 @@ public class UserController {
 public String addUser(@ModelAttribute User user) {
  //   userService.saveUser(user);
 
-    if (user.getUsername() == null) {//бессмысленная проверка. Сравниваем юзера с самим собой
+    if (user.getUsername() != null) {//бессмысленная проверка. Сравниваем юзера с самим собой
         userService.saveUser(user);
     } else {
         userService.editUser(user);
