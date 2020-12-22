@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao {
     public void saveUser(User user) {
         if (user.getUsername() != null) {
            // sessionFactory.getCurrentSession().save(user);
+            entityManager.persist(user);
         }
 
     }
@@ -46,13 +47,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
-        return query.getResultList();
+        //TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+       // return query.getResultList();
+        return entityManager.createQuery("select e from User e", User.class).getResultList();
     }
 
     @Override
     public void editUser(User user) {
-
+         entityManager.merge(user);
       //  sessionFactory.getCurrentSession().save(user);
 
     }
@@ -60,6 +62,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void deleteUser(String name) {
         //sessionFactory.getCurrentSession().delete(findUserByUsername(name));
+
     }
 
 }
