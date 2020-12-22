@@ -50,8 +50,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
+
         sessionFactory.getCurrentSession().save(user);
-        
+ //        }
     }
 
     @Override
