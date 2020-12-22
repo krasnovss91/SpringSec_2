@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
+import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -17,8 +18,10 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+  //  @Autowired
+  //  private SessionFactory sessionFactory;
+  @PersistenceContext
+  EntityManager entityManager;
 
 
     @Override
@@ -31,7 +34,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void saveUser(User user) {
         if (user.getUsername() != null) {
-            sessionFactory.getCurrentSession().save(user);
+           // sessionFactory.getCurrentSession().save(user);
         }
 
     }
@@ -50,13 +53,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void editUser(User user) {
 
-        sessionFactory.getCurrentSession().save(user);
+      //  sessionFactory.getCurrentSession().save(user);
 
     }
 
     @Override
     public void deleteUser(String name) {
-        sessionFactory.getCurrentSession().delete(findUserByUsername(name));
+        //sessionFactory.getCurrentSession().delete(findUserByUsername(name));
     }
 
 }
