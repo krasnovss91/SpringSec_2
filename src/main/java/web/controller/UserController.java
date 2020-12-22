@@ -64,7 +64,7 @@ public class UserController {
 public String addUser(@ModelAttribute User user) {
  //   userService.saveUser(user);
 
-    if (user.getUsername() != null) {//бессмысленная проверка. Сравниваем юзера с самим собой
+    if (user.getUsername() != null) {
         userService.saveUser(user);
     } else {
         userService.editUser(user);
@@ -81,7 +81,7 @@ public String addUser(@ModelAttribute User user) {
         User user1 = userService.findUserByName(name);
 
         if(user.getUsername().equals(user1.getUsername())) {
-            userService.editUser(user); //этот метод вообще не задействуется. Сделать проверку в нём
+            userService.editUser(user);
         }
         return "redirect:/admin";
     }

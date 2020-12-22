@@ -12,7 +12,7 @@ import web.model.User;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-
+// пересадить с SessionFactory  на EntityManager+@PersistenceContext
 @Transactional
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -30,7 +30,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        //   sessionFactory.getCurrentSession().save(user);
         if (user.getUsername() != null) {
             sessionFactory.getCurrentSession().save(user);
         }
@@ -52,7 +51,7 @@ public class UserDaoImpl implements UserDao {
     public void editUser(User user) {
 
         sessionFactory.getCurrentSession().save(user);
- //        }
+
     }
 
     @Override
