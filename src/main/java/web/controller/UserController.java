@@ -77,7 +77,12 @@ public String addUser(@ModelAttribute User user) {
 
     @RequestMapping("admin/edit/{username}")
     public String editUser(@ModelAttribute("editUser") User user) {
-        userService.editUser(user); //этот метод вообще не задействуется. Сделать проверку в нём
+        String name = user.getUsername();
+        User user1 = userService.findUserByName(name);
+
+        if(user.getUsername().equals(user1.getUsername())) {
+            userService.editUser(user); //этот метод вообще не задействуется. Сделать проверку в нём
+        }
         return "redirect:/admin";
     }
 
