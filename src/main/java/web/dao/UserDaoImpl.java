@@ -53,6 +53,7 @@ public class UserDaoImpl implements UserDao {
         //TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
        // return query.getResultList();
         return entityManager.createQuery("select e from User e", User.class).getResultList();
+
     }
 
     @Override
