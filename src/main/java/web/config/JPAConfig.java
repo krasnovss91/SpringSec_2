@@ -53,7 +53,7 @@ public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
             = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setDataSource(dataSource());
-    entityManagerFactoryBean.setPackagesToScan(new String[] { "mvc_hiber.model" });
+    entityManagerFactoryBean.setPackagesToScan(new String[] { "web.model" });
 
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
