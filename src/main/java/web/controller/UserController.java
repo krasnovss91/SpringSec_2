@@ -76,7 +76,8 @@ public String addUser(@ModelAttribute User user) {
 
 
     @RequestMapping("admin/edit/{username}")
-    public String editUser(@ModelAttribute("editUser") User user) {// возможно проблема здесь
+  //  public String editUser(@ModelAttribute("editUser") User user) {// возможно проблема здесь
+    public String editUser(@PathVariable("username") User user) {
    //     String name = user.getUsername();
     //    User user1 = userService.findUserByName(name);
 
