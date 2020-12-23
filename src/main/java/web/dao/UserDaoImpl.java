@@ -3,7 +3,7 @@ package web.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,7 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import java.util.List;
 // пересадить с SessionFactory  на EntityManager+@PersistenceContext
 @Transactional
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         //TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
        // return query.getResultList();
-        return entityManager.createQuery("select e from User e", User.class).getResultList();
+        return entityManager.createQuery("SELECT e FROM User e", User.class).getResultList();
 
     }
 
