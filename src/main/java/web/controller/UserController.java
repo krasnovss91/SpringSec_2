@@ -85,14 +85,14 @@ public String addUser(@ModelAttribute User user) {
 
         return "edit-user";
     }
-    /*
 
-        @PostMapping("showUserForm/edit/showUserForm/edit")
+    
+    @PostMapping("admin/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
-        return "redirect:/showUserForm";
+        return "redirect:/admin";
     }
-     */
+
 
     @GetMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
