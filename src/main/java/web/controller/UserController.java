@@ -77,8 +77,14 @@ public String addUser(@ModelAttribute User user) {
 
     @RequestMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username) {
+
+
         User user = userService.findUserByName(username);
         userService.editUser(user);
+        /*
+                model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("listUsers", userService.getAllUsers());
+         */
         return "redirect:/admin";
     }
 
