@@ -76,8 +76,9 @@ public String addUser(@ModelAttribute User user) {
 
 
     @RequestMapping("admin/edit/{username}")
-    public String editUser(@PathVariable("username") String username) {
-
+    public String editUser(@PathVariable("username") String username, Model model) {
+        model.addAttribute("user", userService.findUserByName(username));
+        model.addAttribute("listUsers", userService.getAllUsers());
 
         User user = userService.findUserByName(username);
         userService.editUser(user);
