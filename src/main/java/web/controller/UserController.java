@@ -76,15 +76,9 @@ public String addUser(@ModelAttribute User user) {
 
 
     @RequestMapping("admin/edit/{username}")
-  //  public String editUser(@ModelAttribute("editUser") User user) {// возможно проблема здесь
     public String editUser(@PathVariable("username") String username) {
-   //     String name = user.getUsername();
-    //    User user1 = userService.findUserByName(name);
-
-   //     if(user.getUsername().equals(user1.getUsername())) {
         User user = userService.findUserByName(username);
-            userService.editUser(user);
-    //    }
+        userService.editUser(user);
         return "redirect:/admin";
     }
 

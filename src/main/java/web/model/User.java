@@ -17,7 +17,7 @@ public class User {
 //nullable = false
     @Column(name = "ENABLED",nullable = false)
     private boolean enabled;
-
+//@OneToMany(fetch = FetchType.LAZY/EAGER))
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Authorities> authorities = new HashSet<>();
 
