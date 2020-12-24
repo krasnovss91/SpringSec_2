@@ -9,7 +9,7 @@
 
 <h1>edit user form</h1>
 <form class="tg" action="#" th:action="@{admin/edit/{username}}" th:object="${user}" method="post">
-    <p>name: <input type="text" th:field="*{name}" required/></p>
+    <p>name: <input type="text" th:field="*{username}" required/></p>
     <p>password: <input type="text" th:field="*{password}" required/></p>
     <p>
         <input type="submit" value="Submit" />

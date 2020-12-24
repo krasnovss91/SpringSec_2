@@ -86,7 +86,7 @@ public String addUser(@ModelAttribute User user) {
                 model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("listUsers", userService.getAllUsers());
          */
-        return "redirect:/admin";
+        return "edit-user";
     }
 
     @GetMapping("admin/delete/{username}")
