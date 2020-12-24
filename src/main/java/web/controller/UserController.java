@@ -86,8 +86,8 @@ public String addUser(@ModelAttribute User user) {
         return "edit-user";
     }
 
-    
-    @PostMapping("admin/edit")
+
+    @PostMapping("admin/edit/admin/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/admin";
