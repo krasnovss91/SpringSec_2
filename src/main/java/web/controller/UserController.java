@@ -82,12 +82,17 @@ public String addUser(@ModelAttribute User user) {
 
         User user = userService.findUserByName(username);
         userService.editUser(user);
-        /*
-                model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("listUsers", userService.getAllUsers());
-         */
+
         return "edit-user";
     }
+    /*
+
+        @PostMapping("showUserForm/edit/showUserForm/edit")
+    public String editUser(@ModelAttribute("editUser") User user) {
+        userService.editUser(user);
+        return "redirect:/showUserForm";
+    }
+     */
 
     @GetMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
