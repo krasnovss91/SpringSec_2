@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {// в этом методе сделать настройки для работы с БД
         http.formLogin()
                 // указываем страницу с формой логина
                 .loginPage("/login")
