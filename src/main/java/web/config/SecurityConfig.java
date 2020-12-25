@@ -38,6 +38,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // даем доступ к форме логина всем
                 .permitAll();
 
+        /*
+           @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+        //.antMatchers("/", "/home").permitAll()
+        .antMatchers("/", "/home").access("hasRole('USER')")
+        .antMatchers("/admin/**").access("hasRole('ADMIN')")
+        .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+        //.and().formLogin().loginPage("/login")
+        .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
+        .usernameParameter("ssoId").passwordParameter("password")
+        .and().csrf()
+        .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+    }
+
+}
+         */
         http.logout()
                 // разрешаем делать логаут всем
                 .permitAll()
