@@ -26,14 +26,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-      //  auth.inMemoryAuthentication().withUser("ADMIN").password("ADMIN").roles("ADMIN");//изменить настройки здесь с inMemory  на наш сервис
+      //  auth.inMemoryAuthentication().withUser("ADMIN").password("ADMIN").roles("ADMIN");
 
         auth.userDetailsService(userDetailsService);
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {// в этом методе сделать настройки для работы с БД
-
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/login").anonymous()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .successHandler(loginSuccessHandler)
+                .loginProcessingUrl("/login")
+                .usernameParameter("j_username")
+                .passwordParameter("j_password");
+    }
+/*
         http.formLogin()
 
                 // указываем страницу с формой логина
@@ -49,10 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
-
-
-
-
 
 
         http.logout()
@@ -74,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").access("hasAnyRole('ADMIN')").anyRequest().authenticated();
 
 //        http.authorizeRequests().antMatchers("/login").anonymous().antMatchers("/user").access("hasAnyRole('USER')").anyRequest().authenticated();
+        */
     }
 
     @Bean
