@@ -58,13 +58,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
          */
 
-        http.authorizeRequests()
+               http.authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
                 .antMatchers("/", "/home").access("hasRole('USER')")
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
                 //.and().formLogin().loginPage("/login")
-                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
+                .and().formLogin().loginPage("/login").successHandler(new LoginSuccessHandler())
                 .usernameParameter("ssoId").passwordParameter("password")
                 .and().csrf()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
