@@ -23,7 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {// в этом методе сделать настройки для работы с БД
+       /*
         http.formLogin()
+
                 // указываем страницу с формой логина
                 .loginPage("/login")
                 //указываем логику обработки при логине
@@ -38,11 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // даем доступ к форме логина всем
                 .permitAll();
 
-        /*
+        _______________________________________________________
            @Override
     protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests()
-        //.antMatchers("/", "/home").permitAll()
+        .antMatchers("/", "/home").permitAll()
         .antMatchers("/", "/home").access("hasRole('USER')")
         .antMatchers("/admin/**").access("hasRole('ADMIN')")
         .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
@@ -55,6 +57,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 }
          */
+
+        http.authorizeRequests()
+                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/", "/home").access("hasRole('USER')")
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                //.and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
+                .usernameParameter("ssoId").passwordParameter("password")
+                .and().csrf()
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+
+
         http.logout()
                 // разрешаем делать логаут всем
                 .permitAll()
