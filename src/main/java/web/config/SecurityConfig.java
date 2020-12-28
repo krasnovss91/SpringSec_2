@@ -10,20 +10,30 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import web.config.handler.LoginSuccessHandler;
+import web.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsServiceImpl userDetailsService;
+    private final LoginSuccessHandler loginSuccessHandler;
+
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, LoginSuccessHandler loginSuccessHandler) {
+        this.userDetailsService = userDetailsService;
+        this.loginSuccessHandler = loginSuccessHandler;
+    }
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
       //  auth.inMemoryAuthentication().withUser("ADMIN").password("ADMIN").roles("ADMIN");//изменить настройки здесь с inMemory  на наш сервис
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {// в этом методе сделать настройки для работы с БД
-       /*
+
         http.formLogin()
 
                 // указываем страницу с формой логина
@@ -33,41 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем action с формы логина
                 .loginProcessingUrl("/login")
                 // Указываем параметры логина и пароля с формы логина
-                //.usernameParameter("j_username")
-                .usernameParameter("username")
-                //.passwordParameter("j_password")
-                .passwordParameter("password")
+                .usernameParameter("j_username")
+                //.usernameParameter("username")
+                .passwordParameter("j_password")
+                //.passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
 
-        _______________________________________________________
-           @Override
-    protected void configure(HttpSecurity http) throws Exception {
-      http.authorizeRequests()
-        .antMatchers("/", "/home").permitAll()
-        .antMatchers("/", "/home").access("hasRole('USER')")
-        .antMatchers("/admin/**").access("hasRole('ADMIN')")
-        .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-        //.and().formLogin().loginPage("/login")
-        .and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
-        .usernameParameter("ssoId").passwordParameter("password")
-        .and().csrf()
-        .and().exceptionHandling().accessDeniedPage("/Access_Denied");
-    }
 
-}
-         */
 
-               http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .antMatchers("/", "/home").access("hasRole('USER')")
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
-                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-                //.and().formLogin().loginPage("/login")
-                .and().formLogin().loginPage("/login").successHandler(new LoginSuccessHandler())
-                .usernameParameter("ssoId").passwordParameter("password")
-                .and().csrf()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+
 
 
         http.logout()
