@@ -15,6 +15,10 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 //nullable = false
+
+    @Column(name = "ROLE")
+    private  String role;
+
     @Column(name = "ENABLED",nullable = false)
     private boolean enabled;
 //@OneToMany(fetch = FetchType.LAZY/EAGER))
@@ -37,6 +41,9 @@ public class User {
         this.password = password;
     }
 
+    public String getRole(){return role;}
+
+    public void setRole(String role){this.role = role;}
 
     public boolean isEnabled() {
         return enabled;
