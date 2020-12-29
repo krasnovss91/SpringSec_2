@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class UserDetailsServiceImpl {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     UserService userService;
-    
+
     public User findByUserName(String username) {
         User user = userService.findUserByName(username);
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-        return user;
+        return new MyUserPrincipal(user);
 
     }
 
