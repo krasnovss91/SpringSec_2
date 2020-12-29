@@ -1,14 +1,14 @@
 package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import web.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -16,13 +16,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
-    public User findByUserName(String username) {
+    public org.springframework.security.core.userdetails.User findByUserName(String username) {
         User user = userService.findUserByName(username);
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-        return new MyUserPrincipal(user);
+       // return new MyUserPrincipal(user);
 
+        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+
+        return new org.springframework.security.core.userdetails
+                .User(user.getUsername(), user.getPassword(), authorities);
     }
     /*
         @Autowired
