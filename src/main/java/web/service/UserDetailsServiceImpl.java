@@ -16,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
-    public org.springframework.security.core.userdetails.User findByUserName(String username) {
+    public org.springframework.security.core.userdetails.User loadUserByUsername(String username) {
         User user = userService.findUserByName(username);
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
@@ -29,20 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .User(user.getUsername(), user.getPassword(), authorities);
     }
     /*
-        @Autowired
-    UserDAO userDAO;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDAO.getUserByUsername(username); //userDAO == null Causing NPE
-        if (user == null)
-            throw new UsernameNotFoundException("Oops!");
-
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
-
-        return new org.springframework.security.core.userdetails
-                .User(user.getLogin(), user.getPassword(), authorities);
-    }
 
 @Override
     public List<User> getUsers() {
