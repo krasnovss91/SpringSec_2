@@ -87,7 +87,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        http.authorizeRequests().antMatchers("/login").anonymous().antMatchers("/user").access("hasAnyRole('USER')").anyRequest().authenticated();
         */
-    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
