@@ -15,6 +15,7 @@
             <tr>
                 <td width="120">name</td>
                 <td width="120">password</td>
+                <td width="120">role</td>
                 <td width="50">edit</td>
                 <td width="50">delete</td>
             </tr>
@@ -24,6 +25,7 @@
                         <a th:href="@{/admin/{name}(name=${user.username})}" th:text="${user.username}"></a>
                     </td>
                     <td th:text="${user.password}"></td>
+                    <td th:text="${user.role}"></td>
                     <td>
                         <a th:href="@{/admin/edit/{name}(name=${user.username})}">edit</a>
                     </td>
@@ -41,6 +43,7 @@
         <form class="tg" action="#" th:action="@{admin/add}"  th:object="${user}" method="post">
             <p>name: <input type="text" th:field="*{username}" required/></p>
             <p>password: <input type="text" th:field="*{password}" required/></p>
+            <p>role: <input type="text" th:field="*{role}" required/></p>
             <p>
                 <input type="submit" value="Submit" />
                 <input type="reset" value="Reset" />
