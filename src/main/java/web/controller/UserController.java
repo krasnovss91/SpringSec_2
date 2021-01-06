@@ -80,6 +80,17 @@ public String registerForm(Model model) {
     return "register";
 }
 
+@PostMapping("admin/register")
+public String registerUser(@ModelAttribute User user) {
+    if (user.getUsername() != null) {
+        userService.saveUser(user);
+    } else {
+        userService.editUser(user);
+    }
+
+    return "redirect:/admin";
+}
+
     @RequestMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByName(username));
