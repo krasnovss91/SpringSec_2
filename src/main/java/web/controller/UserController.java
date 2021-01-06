@@ -73,6 +73,12 @@ public String addUser(@ModelAttribute User user) {
     return "redirect:/admin";
 }
 //сделать маппинг на страницу с регистрацией, вызвав методы добавления
+@GetMapping("/register")
+public String registerForm(Model model) {
+    model.addAttribute("user", new User());
+    model.addAttribute("listUsers", userService.getAllUsers());
+    return "register";
+}
 
     @RequestMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
