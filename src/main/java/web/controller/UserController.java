@@ -70,10 +70,9 @@ public String addUser(@ModelAttribute User user) {
         userService.editUser(user);
     }
 
-
     return "redirect:/admin";
 }
-
+//сделать маппинг на страницу с регистрацией, вызвав методы добавления
 
     @RequestMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
