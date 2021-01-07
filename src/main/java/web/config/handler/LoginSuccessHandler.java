@@ -33,25 +33,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             httpServletResponse.sendRedirect("/user");
         }
 
-        /*
 
-  @Override
-  public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)  throws IOException, ServletException {
-        response.setStatus(HttpServletResponse.SC_OK);
-
-        boolean admin = false;
-
-        for (GrantedAuthority auth : authentication.getAuthorities()) {
-            if ("ROLE_ADMIN".equals(auth.getAuthority())){
-              admin = true;
-            }
-        }
-
-        if(admin){
-          response.sendRedirect("/admin");
-        }else{
-          response.sendRedirect("/user");
-        }
-         */
     }
 }
