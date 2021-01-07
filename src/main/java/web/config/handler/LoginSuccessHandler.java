@@ -16,6 +16,33 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
-        httpServletResponse.sendRedirect("/admin");
+        httpServletResponse.sendRedirect("/admin");//перенаправляется на эту страницу в любом случае. Нужно сделать распознавание ролей здесь
+
+        /*
+           private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+  @Override
+  public void onAuthenticationSuccess(HttpServletRequest request,
+      HttpServletResponse response, Authentication authentication)
+      throws IOException, ServletException {
+        //set our response to OK status
+        response.setStatus(HttpServletResponse.SC_OK);
+
+        boolean admin = false;
+
+        logger.info("AT onAuthenticationSuccess(...) function!");
+
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
+            if ("ROLE_ADMIN".equals(auth.getAuthority())){
+              admin = true;
+            }
+        }
+
+        if(admin){
+          response.sendRedirect("/admin");
+        }else{
+          response.sendRedirect("/user");
+        }
+         */
     }
 }
