@@ -6,7 +6,6 @@ import web.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,20 +20,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-       // return new MyUserPrincipal(user);
 
         List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
 
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(), user.getPassword(), authorities);
     }
-    /*
-
-
-@Override
-    public List<User> getUsers() {
-        return userDAO.getUsers();//userDAO !=null
-    }
-     */
 
 }

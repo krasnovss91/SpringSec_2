@@ -29,38 +29,20 @@ import java.util.Properties;
 public class JPAConfig {
     @Autowired
     private Environment env;
-/*
-@Bean
-public SessionFactory getSessionFactory() {
-    LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-    builder
-            .scanPackages("web.model")
-            .addProperties(getHibernateProperties());
 
-    return builder.buildSessionFactory();
-}
-// заменить бин SF на EM
-    private Properties getHibernateProperties() {
-        Properties prop = new Properties();
-        prop.put("hibernate.format_sql", "true");
-        prop.put("hibernate.show_sql", "true");
-        prop.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        return prop;
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
+                = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource());
+        entityManagerFactoryBean.setPackagesToScan(new String[]{"web.model"});
+
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        entityManagerFactoryBean.setJpaProperties(additionalProperties());
+
+        return entityManagerFactoryBean;
     }
-*/
-@Bean
-public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-    LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
-            = new LocalContainerEntityManagerFactoryBean();
-    entityManagerFactoryBean.setDataSource(dataSource());
-    entityManagerFactoryBean.setPackagesToScan(new String[] { "web.model" });
-
-    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-    entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-    entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
-    return entityManagerFactoryBean;
-}
 
     @Bean(name = "dataSource")
     public BasicDataSource dataSource() {
@@ -72,6 +54,7 @@ public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         ds.setPassword("password");
         return ds;
     }
+
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -91,11 +74,6 @@ public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
-   /* @Bean
-    public HibernateTransactionManager txManager() {
-
-        return new HibernateTransactionManager(getSessionFactory());
-    } */
 
 
 }

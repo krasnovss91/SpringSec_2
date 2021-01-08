@@ -16,20 +16,20 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
-                                        Authentication authentication) throws IOException, ServletException {
-       // httpServletResponse.sendRedirect("/admin");//перенаправляется на эту страницу в любом случае. Нужно сделать распознавание ролей здесь
+                                        Authentication authentication) throws IOException {
+
 
         boolean admin = false;
 
-        for(GrantedAuthority auth: authentication.getAuthorities()){
-            if("ADMIN".equals(auth.getAuthority())){
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
+            if ("ADMIN".equals(auth.getAuthority())) {
                 admin = true;
             }
         }
 
-        if(admin){
+        if (admin) {
             httpServletResponse.sendRedirect("/admin");
-        }else{
+        } else {
             httpServletResponse.sendRedirect("/user");
         }
 

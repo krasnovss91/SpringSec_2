@@ -1,5 +1,7 @@
 package web.dao;
+
 import web.model.User;
+
 import java.util.List;
 
 public interface UserDao {
@@ -13,7 +15,6 @@ public interface UserDao {
 
     void editUser(User user);
 
-   // void deleteUser(long id);
     void deleteUser(String name);
 
 }

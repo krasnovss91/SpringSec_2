@@ -2,26 +2,25 @@ package web.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "USERNAME",unique = true)
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
     @Column(name = "PASSWORD")
     private String password;
-//nullable = false
+
 
     @Column(name = "ROLE")
-    private  String role;
+    private String role;
 
-    @Column(name = "ENABLED",nullable = false)
+    @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
-//@OneToMany(fetch = FetchType.LAZY/EAGER))
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Authorities> authorities = new HashSet<>();
 
@@ -41,9 +40,13 @@ public class User {
         this.password = password;
     }
 
-    public String getRole(){return role;}
+    public String getRole() {
+        return role;
+    }
 
-    public void setRole(String role){this.role = role;}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public boolean isEnabled() {
         return enabled;
