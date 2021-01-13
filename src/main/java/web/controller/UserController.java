@@ -96,8 +96,10 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("admin/delete/{username}")
-    public String deleteUser(@PathVariable("username") String username) {
+   // @RequestMapping("admin/delete/{username}")
+    //public String deleteUser(@PathVariable("username") String username) {
+    @DeleteMapping("admin/delete/{username}")
+    public String deleteUser(@RequestParam("username") String username){
         userService.deleteUser(username);
 
         return "redirect:/admin";
