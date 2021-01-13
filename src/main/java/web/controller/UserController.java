@@ -42,9 +42,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String showUsers(Model model) {
-        List<String> messages = new ArrayList<>();
         model.addAttribute("users", userService.getAllUsers());
-
         return "user";
     }
 
@@ -88,7 +86,7 @@ public class UserController {
     @GetMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByName(username));
-         return "edit-user";
+        return "edit-user";
     }
 
     @PostMapping("admin/edit/admin/edit")
