@@ -96,11 +96,12 @@ public class UserController {
         return "redirect:/admin";
     }
 
-   // @RequestMapping("admin/delete/{username}")
+   // @RequestMapping("admin/delete/{username}")//так будет работать только с GET
     //public String deleteUser(@PathVariable("username") String username) {
-    @DeleteMapping("admin/delete/{username}")
-    public String deleteUser(@RequestParam("username") String username){
-        userService.deleteUser(username);
+    @DeleteMapping("admin/delete")
+    public String deleteUser(@ModelAttribute("deleteUser") User user){
+        //userService.deleteUser(username);
+        userService.deleteUser(user);
 
         return "redirect:/admin";
     }
