@@ -22,7 +22,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
+ //   @RequestMapping(value = "hello", method = RequestMethod.GET)
+    @GetMapping(value = "hello")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
 
@@ -34,7 +35,8 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+  //  @RequestMapping(value = "login", method = RequestMethod.GET)
+    @GetMapping(value = "login")
     public String loginPage() {
         return "login";
     }
