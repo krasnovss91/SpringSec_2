@@ -96,12 +96,12 @@ public class UserController {
         return "redirect:/admin";
     }
 
-   // @RequestMapping("admin/delete/{username}")//так будет работать только с GET. без имени пользователя не работает
-    //public String deleteUser(@PathVariable("username") String username) {
-    @DeleteMapping("admin/delete")
-    public String deleteUser(@ModelAttribute("deleteUser") User user){
-        //userService.deleteUser(username);
-        userService.deleteUser(user);
+    @RequestMapping("admin/delete/{username}")//так будет работать только с GET. без имени пользователя не работает
+    public String deleteUser(@PathVariable("username") String username) {
+   // @DeleteMapping("admin/delete")
+    //public String deleteUser(@ModelAttribute("deleteUser") User user){
+        userService.deleteUser(username);
+      //  userService.deleteUser(user);
 
         return "redirect:/admin";
     }
