@@ -22,7 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
- //   @RequestMapping(value = "hello", method = RequestMethod.GET)
     @GetMapping(value = "hello")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
@@ -35,7 +34,6 @@ public class UserController {
         return "hello";
     }
 
-  //  @RequestMapping(value = "login", method = RequestMethod.GET)
     @GetMapping(value = "login")
     public String loginPage() {
         return "login";
@@ -87,7 +85,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("admin/edit/{username}")
+    @GetMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByName(username));
          return "edit-user";
