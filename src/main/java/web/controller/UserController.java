@@ -88,11 +88,7 @@ public class UserController {
     @RequestMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByName(username));
-        model.addAttribute("listUsers", userService.getAllUsers());
-        User user = userService.findUserByName(username);
-        userService.editUser(user);
-
-        return "edit-user";
+         return "edit-user";
     }
 
     @PostMapping("admin/edit/admin/edit")
@@ -102,7 +98,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/delete/{username}")
+    @RequestMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);
 
