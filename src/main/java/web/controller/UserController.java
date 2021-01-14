@@ -36,6 +36,7 @@ public class UserController {
 
     @GetMapping(value = "login")
     public String loginPage() {
+        //String encodedPassword = bCryptPasswordEncoder.encode(userRegistrationObject.getPassword());
         return "login";
     }
 

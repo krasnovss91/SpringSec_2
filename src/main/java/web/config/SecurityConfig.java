@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -56,10 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         //здесь должен быть BcryptPasswordEncoder
         return NoOpPasswordEncoder.getInstance();
+        //PasswordEncoder encoder = new BCryptPasswordEncoder();
+        //return encoder;
 
-        /*
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-  String hashedPassword = passwordEncoder.encode(yourpassword);
-         */
     }
 }
