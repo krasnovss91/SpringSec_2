@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         //здесь должен быть BcryptPasswordEncoder
         return NoOpPasswordEncoder.getInstance();
-      //  return new BCryptPasswordEncoder();
+
         /*
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
   String hashedPassword = passwordEncoder.encode(yourpassword);
