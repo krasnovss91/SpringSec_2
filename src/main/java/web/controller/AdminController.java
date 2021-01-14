@@ -1,10 +1,43 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import web.model.User;
+import web.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    
+
+    private UserService userService;
+
+    @Autowired
+    public AdminController(UserService userService) {
+
+        this.userService = userService;
+    }
+
+    @GetMapping("/admin")
+    public String showUserForm(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("listUsers", userService.getAllUsers());
+        return "admin";
+    }
+
+    @PostMapping("admin/add")
+    public String addUser(@ModelAttribute User user) {
+
+        if (user.getUsername() != null) {
+            userService.saveUser(user);
+        } else {
+            userService.editUser(user);
+        }
+
+        return "redirect:/admin";
+    }
 }
