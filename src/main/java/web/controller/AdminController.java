@@ -26,7 +26,7 @@ public class AdminController {
         return "admin";
     }
 
-    @PostMapping("/add")
+    @PostMapping("admin/add")
     public String addUser(@ModelAttribute User user) {
 
         if (user.getUsername() != null) {
@@ -48,20 +48,20 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit/{username}")
+    @GetMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByName(username));
         return "edit-user";
     }
 
-    @PostMapping("/edit/admin/edit")
+    @PostMapping("admin/edit/admin/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
 
         return "redirect:/admin";
     }
 
-    @RequestMapping("/delete/{username}")
+    @RequestMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);
         return "redirect:/admin";
