@@ -45,7 +45,7 @@ public class UserController {
         model.addAttribute("users", userService.getAllUsers());
         return "user";
     }
-
+/*
     @GetMapping("/admin")
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
@@ -64,14 +64,14 @@ public class UserController {
 
         return "redirect:/admin";
     }
-
+*/
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.getAllUsers());
         return "register";
     }
-
+/*
     @PostMapping("admin/register")
     public String registerUser(@ModelAttribute User user) {
         if (user.getUsername() != null) {
@@ -105,4 +105,6 @@ public class UserController {
 
         return "redirect:/admin";
     }
+    
+ */
 }
