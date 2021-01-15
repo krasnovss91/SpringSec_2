@@ -1,6 +1,7 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,9 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
     private UserService userService;
+
+  //  @Autowired
+   // private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(UserService userService) {
@@ -36,7 +40,8 @@ public class UserController {
 
     @GetMapping(value = "login")
     public String loginPage() {
-        //String encodedPassword = bCryptPasswordEncoder.encode(userRegistrationObject.getPassword());
+
+       // String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword);
         return "login";
     }
 
