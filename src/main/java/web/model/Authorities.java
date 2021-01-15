@@ -2,12 +2,8 @@ package web.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "authorities")
@@ -16,9 +12,11 @@ public class Authorities implements GrantedAuthority {
     @Column(name = "AUTHORITY")
     private String authority;
 
-    @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
-    @JoinColumn(name = "USERNAME")
-    private User user;
+   // @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
+  //  @JoinColumn(name = "USERNAME")
+    @ManyToMany(mappedBy = "authorities")
+    private List<User> users;
+   // private User user;
 
     public String getAuthority() {
         return authority;
@@ -28,8 +26,8 @@ public class Authorities implements GrantedAuthority {
         this.authority = authority;
     }
 
-    public User getUser() {
-        return user;
+    public User getUsers() {
+        return users;
     }
 
     public void setUser(User user) {

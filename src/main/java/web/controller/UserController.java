@@ -17,8 +17,8 @@ import java.util.List;
 public class UserController {
     private UserService userService;
 
-  //  @Autowired
-   // private BCryptPasswordEncoder bCryptPasswordEncoder;
+   // @Autowired
+  //  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(UserService userService) {
