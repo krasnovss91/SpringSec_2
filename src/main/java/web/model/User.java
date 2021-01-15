@@ -1,12 +1,14 @@
 package web.model;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
     @Id
     @Column(name = "USERNAME", unique = true)
     private String username;
@@ -26,6 +28,21 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return 
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
     }
 
     public void setUsername(String username) {
