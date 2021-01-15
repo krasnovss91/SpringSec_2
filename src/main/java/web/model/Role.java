@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "authorities")
-public class Authorities implements GrantedAuthority {
+public class Role implements GrantedAuthority {
     @Id
     @Column(name = "AUTHORITY")
     private String authority;

@@ -26,7 +26,7 @@ public class User implements UserDetails {
     //здесь изменить связь
   //  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Authorities> authorities = new HashSet<>();
+    private Set<Role> authorities = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -75,11 +75,11 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public Set<Authorities> getAuthorities() {
+    public Set<Role> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authorities> authorities) {
+    public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
     }
 }
