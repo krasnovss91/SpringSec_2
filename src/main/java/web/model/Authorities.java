@@ -30,8 +30,8 @@ public class Authorities implements GrantedAuthority {
         return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(User user) {
+        this.users = user;
     }
 
 }

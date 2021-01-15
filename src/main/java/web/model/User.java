@@ -23,6 +23,7 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
+    //здесь изменить связь
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Authorities> authorities = new HashSet<>();
 
