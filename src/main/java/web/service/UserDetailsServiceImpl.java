@@ -22,9 +22,36 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
-
+//здесь прописать, чтобы можно было иметь несколько ролей
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(), user.getPassword(), authorities);
     }
+    /*
+    @Component
+public class MyUserDetailsService implements UserDetailsService {
+
+    @Resource
+    private AccountService accounts;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Account account = accounts.findByUsername(username);
+        if(null == account) {
+            throw new UsernameNotFoundException("User " + username + " not found.");
+        }
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+        String[] authStrings = account.getAuthorities().split(", ");
+        for(String authString : authStrings) {
+            authorities.add(new SimpleGrantedAuthority(authString));
+        }
+
+        UserDetails ud = new User(account.getUsername(), account.getPassword(), authorities);
+        return ud;
+    }
+
+}
+     */
 
 }
