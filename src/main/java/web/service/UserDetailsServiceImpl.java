@@ -6,6 +6,8 @@ import web.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,25 +23,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+      //  List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
 //здесь прописать, чтобы можно было иметь несколько ролей
-        return new org.springframework.security.core.userdetails
-                .User(user.getUsername(), user.getPassword(), authorities);
-    }
+       // return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+ //   }
+        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+        String[] authStrings = userService.getRoles
     /*
-    @Component
-public class MyUserDetailsService implements UserDetailsService {
 
-    @Resource
-    private AccountService accounts;
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Account account = accounts.findByUsername(username);
-        if(null == account) {
-            throw new UsernameNotFoundException("User " + username + " not found.");
-        }
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         String[] authStrings = account.getAuthorities().split(", ");

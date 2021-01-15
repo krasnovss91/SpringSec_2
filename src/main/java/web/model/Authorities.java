@@ -16,7 +16,7 @@ public class Authorities implements GrantedAuthority {
     @Column(name = "AUTHORITY")
     private String authority;
 
-    @ManyToOne
+    @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
     @JoinColumn(name = "USERNAME")
     private User user;
 
