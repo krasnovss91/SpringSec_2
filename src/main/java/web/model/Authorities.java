@@ -26,12 +26,12 @@ public class Authorities implements GrantedAuthority {
         this.authority = authority;
     }
 
-    public User getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(User user) {
-        this.users = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }
