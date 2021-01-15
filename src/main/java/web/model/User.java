@@ -32,17 +32,17 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() { //реализовать эти 3 метода
-        return false;
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) {
