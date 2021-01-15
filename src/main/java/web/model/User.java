@@ -26,6 +26,13 @@ public class User implements UserDetails {
     //здесь изменить связь
   //  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /*
+        @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    ) добавить в бд отдельную таблицу и столбец id в таблицу с пользователями
+     */
     private Set<Role> authorities = new HashSet<>();
 
     public String getUsername() {
