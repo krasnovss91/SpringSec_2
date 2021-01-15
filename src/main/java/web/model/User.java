@@ -32,12 +32,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return
+        return false;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return 
+    public boolean isAccountNonLocked() { //реализовать эти 3 метода
+        return false;
     }
 
     @Override
