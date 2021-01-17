@@ -13,7 +13,7 @@ public class Role implements GrantedAuthority {
     private String authority;
 
     @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
-    @JoinColumn(name = "USERNAME")
+    @JoinColumn(name = "name")
    // @ManyToMany(mappedBy = "authorities")
   //  private List<User> users;
     private User user;
