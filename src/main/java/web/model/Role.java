@@ -12,11 +12,11 @@ public class Role implements GrantedAuthority {
     @Column(name = "AUTHORITY")
     private String authority;
 
-   // @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
-  //  @JoinColumn(name = "USERNAME")
-    @ManyToMany(mappedBy = "authorities")
-    private List<User> users;
-   // private User user;
+    @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
+    @JoinColumn(name = "USERNAME")
+   // @ManyToMany(mappedBy = "authorities")
+  //  private List<User> users;
+    private User user;
 
     public String getAuthority() {
         return authority;
@@ -26,6 +26,15 @@ public class Role implements GrantedAuthority {
         this.authority = authority;
     }
 
+    public User getUser(){
+        return  user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    /*
     public List<User> getUsers() {
         return users;
     }
@@ -33,5 +42,5 @@ public class Role implements GrantedAuthority {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
+*/
 }

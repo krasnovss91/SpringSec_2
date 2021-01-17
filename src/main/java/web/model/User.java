@@ -24,8 +24,8 @@ public class User implements UserDetails {
     private boolean enabled;
 
     //здесь изменить связь
-  //  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+   // @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     /*
         @JoinTable(
             name = "user_roles",
