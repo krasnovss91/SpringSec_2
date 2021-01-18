@@ -22,18 +22,19 @@ public class User implements UserDetails {
 
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
-
-    //здесь изменить связь
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-   // @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    /*
-        @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-     */
-    private Set<Role> authorities = new HashSet<>();
+    //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+/*
+     @JoinTable(
+             name = "user_roles",
+             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+             inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+     )
+    */
+    private Set<Role> roles;
+   // private Set<Role> authorities = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -82,6 +83,14 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
+    public Set<Role> getRoles(){
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles){
+        this.roles = roles;
+    }
+/*
     public Set<Role> getAuthorities() {
         return authorities;
     }
@@ -89,4 +98,5 @@ public class User implements UserDetails {
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
     }
+    */
 }

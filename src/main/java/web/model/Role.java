@@ -9,13 +9,13 @@ import java.util.List;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
-    @Column(name = "AUTHORITY")
+    @Column(name = "authority")
     private String authority;
 
     @ManyToOne//сделать связь так, чтобы пользователь имел несколько ролей
     @JoinColumn(name = "name")
-   // @ManyToMany(mappedBy = "authorities")
-  //  private List<User> users;
+  //  @ManyToMany(mappedBy = "name")
+    //private List<User> users;
     private User user;
 
     public String getAuthority() {
@@ -33,6 +33,7 @@ public class Role implements GrantedAuthority {
     public void setUser(User user){
         this.user = user;
     }
+
 
     /*
     public List<User> getUsers() {
