@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
     //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 
 /*
