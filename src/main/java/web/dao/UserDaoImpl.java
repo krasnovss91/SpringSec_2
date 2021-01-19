@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import web.config.SecurityConfig;
 import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,8 +31,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-       // String password = user.getPassword();
+      //  String password = user.getPassword();
      //   String encodedPassword = passwordEncoder(password);
+
 
         if (user.getUsername() != null) {
             entityManager.persist(user);
