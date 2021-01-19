@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .successHandler(loginSuccessHandler)
                 .loginProcessingUrl("/login")
-                .usernameParameter("j_username")//.passwordEncoder(passwordEncoder())
+                .usernameParameter("j_username")
                 .passwordParameter("j_password");
 
         
