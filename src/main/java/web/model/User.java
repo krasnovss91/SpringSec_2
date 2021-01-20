@@ -23,18 +23,18 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
     
-   // @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
+  //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 
-
+/*
      @JoinTable(
              name = "user_roles",
              joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
              inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
      )
-
-    private Set<Role> roles;
-   // private Set<Role> authorities = new HashSet<>();
+*/
+   // private Set<Role> roles;
+    private Set<Role> authorities = new HashSet<>();
 
     public User() {}
     /*
@@ -97,13 +97,13 @@ public class User implements UserDetails {
 
 
     public Set<Role> getAuthorities() {
-       // return authorities;
-        return roles;
+        return authorities;
+      //  return roles;
     }
 
     public void setAuthorities(Set<Role> authorities) {
-       // this.authorities = authorities;
-        this.roles = roles;
+        this.authorities = authorities;
+       // this.roles = roles;
     }
 
 }
