@@ -57,6 +57,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void editUser(User user) {
         //и здесь шифрование паролей?
+        String password = user.getPassword();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(password);
+
+        user.setPassword(encodedPassword);
+
         entityManager.merge(user);
 
     }
