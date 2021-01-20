@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.config.SecurityConfig;
+import web.model.Role;
 import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -53,7 +54,14 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery("SELECT e FROM User e", User.class).getResultList();
 
     }
-    //getRoleByName
+
+    @Override
+    public Role getRoleByName(String name){
+        return entityManager.createQuery("from Role where name =:name", Role.class)
+                .setParameter("name",name)
+                .getSingleResult();
+    }
+
     @Override
     public void editUser(User user) {
 
