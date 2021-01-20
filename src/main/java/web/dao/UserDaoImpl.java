@@ -31,8 +31,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-      //  String password = user.getPassword();
-     //   String encodedPassword = passwordEncoder(password);
+        String password = user.getPassword();
+        String encodedPassword = new BCryptPasswordEncoder(Integer.parseInt(password));
 
 
         if (user.getUsername() != null) {
