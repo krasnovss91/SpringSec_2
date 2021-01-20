@@ -56,6 +56,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
+        //и здесь шифрование паролей?
         entityManager.merge(user);
 
     }
