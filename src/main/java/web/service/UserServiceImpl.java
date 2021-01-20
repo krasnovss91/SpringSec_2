@@ -38,7 +38,16 @@ public class UserServiceImpl implements UserService {
         userDao.editUser(user);
     }
 
-    //userServiceImpl
+  /*
+      @Transactional
+    public void setUserRoles(User user) {
+        user.setRoles(user
+                .getRoles()
+                .stream()
+                .map(role -> userDao.getRoleByName(role.getName()))
+                .collect(Collectors.toSet()));
+    }
+   */
 
     @Override
     public void deleteUser(String name) {
