@@ -53,10 +53,10 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery("SELECT e FROM User e", User.class).getResultList();
 
     }
-
+    //getRoleByName
     @Override
     public void editUser(User user) {
-        //и здесь шифрование паролей?
+
         String password = user.getPassword();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);

@@ -38,6 +38,8 @@ public class UserServiceImpl implements UserService {
         userDao.editUser(user);
     }
 
+    //userServiceImpl
+
     @Override
     public void deleteUser(String name) {
     //public void deleteUser(User user){
