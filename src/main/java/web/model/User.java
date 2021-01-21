@@ -97,13 +97,13 @@ public class User implements UserDetails {
 
 
     public Set<Role> getAuthorities() {
-        return authorities;
-      //  return roles;
+        //return authorities;
+        return roles;
     }
 
     public void setAuthorities(Set<Role> authorities) {
-        this.authorities = authorities;
-       // this.roles = roles;
+       // this.authorities = authorities;
+        this.roles = roles;
     }
 
 }
