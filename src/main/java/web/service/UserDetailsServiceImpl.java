@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
-//здесь прописать, чтобы можно было иметь несколько ролей
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 

@@ -17,9 +17,6 @@ import java.util.List;
 public class UserController {
     private UserService userService;
 
-   // @Autowired
-  //  private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     public UserController(UserService userService) {
 
@@ -41,7 +38,6 @@ public class UserController {
     @GetMapping(value = "login")
     public String loginPage() {
 
-       // String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword);
         return "login";
     }
 
