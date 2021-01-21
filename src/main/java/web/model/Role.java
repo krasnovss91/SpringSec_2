@@ -15,7 +15,7 @@ public class Role implements GrantedAuthority {
     private String name;
 
     //@Column(name = "name")
-   // private String authority;
+    private String authority;
 
     //@ManyToOne
     //@JoinColumn(name = "name")
@@ -24,6 +24,14 @@ public class Role implements GrantedAuthority {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<User> users;
    // private User user;
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
 
     public String getAuthority() {
         return authority;
