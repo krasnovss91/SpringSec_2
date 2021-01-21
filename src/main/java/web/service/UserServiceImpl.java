@@ -2,10 +2,12 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -47,8 +49,15 @@ public class UserServiceImpl implements UserService {
                 .map(role -> userDao.getRoleByName(role.getName()))
                 .collect(Collectors.toSet()));
     }
-   */
 
+    @Transactional
+    public void setUserRoles(User user){
+       user.setAuthorities(user.getAuthorities()
+               .stream()
+               .map(role -> (userDao.getRoleByName(user.getUsername()))
+               .collect(Collectors.toSet()));
+    }
+*/
     @Override
     public void deleteUser(String name) {
     //public void deleteUser(User user){

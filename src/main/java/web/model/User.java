@@ -23,19 +23,19 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
     
-    @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
-  //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+  //  @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 
-/*
+
      @JoinTable(
              name = "user_roles",
-             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-             inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+             joinColumns = @JoinColumn(name = "users_name", referencedColumnName = "username"),
+             inverseJoinColumns = @JoinColumn(name = "roles_name", referencedColumnName = "name")
      )
-*/
-   // private Set<Role> roles;
-    private Set<Role> authorities = new HashSet<>();
 
+    private Set<Role> roles;
+   // private Set<Role> authorities = new HashSet<>();
+   
     public User() {}
     /*
         public User(String username, String password, String name, String lastName, String email, Role... roles) {
