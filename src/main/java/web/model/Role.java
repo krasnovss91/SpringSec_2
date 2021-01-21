@@ -11,12 +11,16 @@ import java.util.List;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
+    @Column(name = "name", unique = true)
+    private String name;
+
     //@Column(name = "name")
-    private String authority;
+   // private String authority;
 
     //@ManyToOne
     //@JoinColumn(name = "name")
-    @ManyToMany(mappedBy = "name")
+    //@ManyToMany(mappedBy = "name")
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<User> users;
    // private User user;
