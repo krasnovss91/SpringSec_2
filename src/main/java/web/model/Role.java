@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
-    @Column(name = "authority")
+    //@Column(name = "name")
     private String authority;
 
     //@ManyToOne
