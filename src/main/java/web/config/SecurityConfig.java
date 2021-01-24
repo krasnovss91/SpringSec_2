@@ -33,26 +33,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-               // .antMatchers("/login").anonymous()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                //.antMatchers("/admin/**").hasAuthority("ADMIN")
-                //.antMatchers("/user/**").hasAnyAuthority( "ADMIN","USER")
-               // .antMatchers("/admin/**").hasAnyAuthority("USER,ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .successHandler(loginSuccessHandler)
-                .loginProcessingUrl("/login")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password");
+        try {
+            http
+                    .csrf().disable()
+                    .authorizeRequests()
+                    .antMatchers("/login").permitAll()
+                    // .antMatchers("/login").anonymous()
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                    //.antMatchers("/admin/**").hasAuthority("ADMIN")
+                    //.antMatchers("/user/**").hasAnyAuthority( "ADMIN","USER")
+                    // .antMatchers("/admin/**").hasAnyAuthority("USER,ADMIN")
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .successHandler(loginSuccessHandler)
+                    .loginProcessingUrl("/login")
+                    .usernameParameter("j_username")
+                    .passwordParameter("j_password");
 
-        
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
