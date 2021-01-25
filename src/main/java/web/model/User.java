@@ -82,15 +82,14 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-/*
-    public String getRole() {
-        return role;
+
+    public Role getRoles() {
+        return (Role) roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-*/
+    public void setRoles(Role roles) {
+        this.roles = (Set<Role>) roles; }
+
     public boolean isEnabled() {
         return enabled;
     }
