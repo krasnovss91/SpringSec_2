@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.config.SecurityConfig;
 import web.model.Role;
 import web.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -41,7 +42,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(long id) {
-        return null;
+        return entityManager.find(User.class, id);
     }
 
     @Override
@@ -52,9 +53,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Role getRoleByName(String name){
+    public Role getRoleByName(String name) {
         return entityManager.createQuery("from Role where name =:name", Role.class)
-                .setParameter("name",name)
+                .setParameter("name", name)
                 .getSingleResult();
     }
 
@@ -73,9 +74,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(String name) {
-     // public void deleteUser(User userToBeDeleted){
+        // public void deleteUser(User userToBeDeleted){
 
-      //  entityManager.remove(userToBeDeleted);
+        //  entityManager.remove(userToBeDeleted);
         User userToBeDeleted = findUserByUsername(name);
 
         if (userToBeDeleted != null) {
