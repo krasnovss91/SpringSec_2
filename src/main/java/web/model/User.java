@@ -27,14 +27,11 @@ public class User implements UserDetails {
     
   //  @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-
-
-     @JoinTable(
-             name = "user_roles",
-            // joinColumns = @JoinColumn(name = "users_name", referencedColumnName = "username"),
-             joinColumns = @JoinColumn(name = "user_role",referencedColumnName = "role"),
-             inverseJoinColumns = @JoinColumn(name = "role_name", referencedColumnName = "name")
-     )
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
 
     private Set<Role> roles;
    // private Set<Role> authorities = new HashSet<>();
@@ -50,6 +47,12 @@ public class User implements UserDetails {
         this.roles = new HashSet<>(Arrays.asList(roles));
     }
      */
+
+    public long getId(){return id;}
+
+    public void setId(long id){
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
