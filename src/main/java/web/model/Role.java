@@ -20,8 +20,8 @@ public class Role implements GrantedAuthority {
     private String authority;
 
     //@JoinColumn(name = "name")
-    //@ManyToMany(mappedBy = "name")
-    @ManyToMany(mappedBy = "role_id",cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    //@ManyToMany(mappedBy = "role_id")если это вставить в скобки строкой ниже, при запуске летит ошибка
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<User> users;
    // private User user;

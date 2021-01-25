@@ -27,6 +27,7 @@ public class User implements UserDetails {
     private boolean enabled;
     
   //  @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
+    //mappedBy="user_id"
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
