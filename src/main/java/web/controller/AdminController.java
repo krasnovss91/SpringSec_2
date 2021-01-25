@@ -48,9 +48,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/edit/{username}")
-    public String editUser(@PathVariable("username") String username, Model model) {
-        model.addAttribute("user", userService.findUserByName(username));//заменить на id
+    @GetMapping("admin/edit/{id}")
+    public String editUser(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
         return "edit-user";
     }
 
@@ -61,9 +61,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("admin/delete/{username}")
-    public String deleteUser(@PathVariable("username") String username) {
-        userService.deleteUser(username);// этот метод перекроить на id
+    @RequestMapping("admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id);
         return "redirect:/admin";
     }
 }
