@@ -2,6 +2,7 @@ package web.model;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -37,16 +38,13 @@ public class User implements UserDetails {
    // private Set<Role> authorities = new HashSet<>();
    
     public User() {}
-    /*
-        public User(String username, String password, String name, String lastName, String email, Role... roles) {
+
+    public User(String username, String password, Role roles){
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
         this.roles = new HashSet<>(Arrays.asList(roles));
     }
-     */
+
 
     public long getId(){return id;}
 

@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
-    //public org.springframework.security.core.userdetails.User loadUserByUsername(String username) {
+ //   public org.springframework.security.core.userdetails.User loadUserByUsername(String username) {
     @Override
     public UserDetails loadUserByUsername(String username){
         User user = userService.findUserByName(username);
