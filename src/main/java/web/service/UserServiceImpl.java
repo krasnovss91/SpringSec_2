@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void deleteUser(String name) {
-        userDao.deleteUser(userDao.findUserByUsername(name).getUsername());
+    public void deleteUser(long id) {
+        userDao.deleteUser(userDao.getUserById(id).getId());
     }
 
     @Override
     public User findUserByName(String name) {
         return userDao.findUserByUsername(name);
-    }//заменить на работу с id
+    }
 }
