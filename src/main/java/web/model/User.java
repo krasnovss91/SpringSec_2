@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @Column(name = "USERNAME", unique = true)
     private String username;
 
@@ -17,8 +20,7 @@ public class User implements UserDetails {
     private String password;
 
 
-    @Column(name = "ROLE")
-    private String role;
+//    @Column(name = "ROLE")//  private String role;
 
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
@@ -79,7 +81,7 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     public String getRole() {
         return role;
     }
@@ -87,7 +89,7 @@ public class User implements UserDetails {
     public void setRole(String role) {
         this.role = role;
     }
-
+*/
     public boolean isEnabled() {
         return enabled;
     }
