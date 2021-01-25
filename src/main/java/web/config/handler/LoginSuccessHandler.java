@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.rmi.AccessException;
 
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -16,23 +17,27 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
-                                        Authentication authentication) throws IOException {
+                                        Authentication authentication) throws IOException{
 
+        try {
 
-        boolean admin = false;
+            boolean admin = false;
 
-        for (GrantedAuthority auth : authentication.getAuthorities()) {
-            if ("ADMIN".equals(auth.getAuthority())) {
-                admin = true;
+            for (GrantedAuthority auth : authentication.getAuthorities()) {
+                if ("ADMIN".equals(auth.getAuthority())) {
+                    admin = true;
+                }
             }
+
+            if (admin) {
+                httpServletResponse.sendRedirect("/admin");
+            } else {
+                httpServletResponse.sendRedirect("/user");
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+
         }
-
-        if (admin) {
-            httpServletResponse.sendRedirect("/admin");
-        } else {
-            httpServletResponse.sendRedirect("/user");
-        }
-
-
     }
 }
