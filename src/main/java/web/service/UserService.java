@@ -10,6 +10,6 @@ public interface UserService {
     List<User> getAllUsers();
     void editUser(User user);
     void deleteUser(String name);
-    User findUserByName(String name);
+    User findUserByName(long id);
 }
 
