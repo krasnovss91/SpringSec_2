@@ -39,7 +39,7 @@ public class AdminController {
     }
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
-        if (user.getUsername() != null) {
+        if (user.getUsername() != null) { //доставать по id, не по имени!
             userService.saveUser(user);
         } else {
             userService.editUser(user);
