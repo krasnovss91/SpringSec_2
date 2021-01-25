@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(String name) {
+    public void deleteUser(String name) {// заменить на работу с id
         // public void deleteUser(User userToBeDeleted){
 
         //  entityManager.remove(userToBeDeleted);

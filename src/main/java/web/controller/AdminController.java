@@ -39,7 +39,7 @@ public class AdminController {
     }
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
-        if (user.getUsername() != null) { //доставать по id, не по имени!
+        if (user.getUsername() != null) { //доставать по id, а не по имени
             userService.saveUser(user);
         } else {
             userService.editUser(user);
@@ -50,7 +50,7 @@ public class AdminController {
 
     @GetMapping("admin/edit/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
-        model.addAttribute("user", userService.findUserByName(username));
+        model.addAttribute("user", userService.findUserByName(username));//заменить на id
         return "edit-user";
     }
 
@@ -63,7 +63,7 @@ public class AdminController {
 
     @RequestMapping("admin/delete/{username}")
     public String deleteUser(@PathVariable("username") String username) {
-        userService.deleteUser(username);
+        userService.deleteUser(username);// этот метод перекроить на id
         return "redirect:/admin";
     }
 }
