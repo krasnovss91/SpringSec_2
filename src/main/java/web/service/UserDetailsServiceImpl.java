@@ -33,20 +33,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     }
 
-    /*
-
-
-        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        String[] authStrings = account.getAuthorities().split(", ");
-        for(String authString : authStrings) {
-            authorities.add(new SimpleGrantedAuthority(authString));
-        }
-
-        UserDetails ud = new User(account.getUsername(), account.getPassword(), authorities);
-        return ud;
-    }
-
-}
-     */
-
 }

@@ -16,14 +16,12 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "name", unique = true)
     private String name;
-
-    //@Column(name = "name")
+    
     private String authority;
 
-    //@ManyToOne
     //@JoinColumn(name = "name")
     //@ManyToMany(mappedBy = "name")
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "id",cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<User> users;
    // private User user;
