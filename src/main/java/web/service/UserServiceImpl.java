@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
@@ -49,5 +50,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByName(String name) {
         return userDao.findUserByUsername(name);
+    }
+
+    @Override
+    public Role getRoleByName(String name){
+       return userDao.getRoleByName(name);
     }
 }
