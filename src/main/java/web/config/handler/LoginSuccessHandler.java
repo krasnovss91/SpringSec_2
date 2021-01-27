@@ -30,6 +30,27 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException {
+
+        boolean admin = false;
+
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
+            if ("ADMIN".equals(auth.getAuthority())) {
+
+                admin = true;
+            }
+        }
+
+
+        if (admin) {
+            httpServletResponse.sendRedirect("/admin");
+        } else {
+            httpServletResponse.sendRedirect("/user");
+        }
+
+    
+
+
+        /*
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         if (roles.contains("ADMIN")) {
@@ -37,7 +58,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         } else if (roles.contains("USER")) {
             httpServletResponse.sendRedirect("/user");
         }
-
+*/
 /*
 
         try {
