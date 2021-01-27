@@ -11,6 +11,7 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 
@@ -22,14 +23,13 @@ public class UserDaoImpl implements UserDao {
     EntityManager entityManager;
 
     @Override
-    public User findUserByUsername(String name){
+    public User findUserByUsername(String name) {
 
-          // return entityManager.find(User.class, name);//переделать на HQl
-        /*
-                String hql =" FROM User WHERE car=:car";
-        Query query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("car",car);
+        // return entityManager.find(User.class, name);//переделать на HQl
+
+        String hql = "FROM User Where name=:name";
+        Query query = entityManager.createQuery(hql).setParameter("name", name);
         return (User) query.getSingleResult();
-         */
     }
 
     @Override
