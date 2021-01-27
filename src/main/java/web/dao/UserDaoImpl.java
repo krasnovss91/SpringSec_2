@@ -24,7 +24,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByUsername(String name){
 
-           return entityManager.find(User.class, name);
+          // return entityManager.find(User.class, name);//переделать на HQl
+        /*
+                String hql =" FROM User WHERE car=:car";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("car",car);
+        return (User) query.getSingleResult();
+         */
     }
 
     @Override
