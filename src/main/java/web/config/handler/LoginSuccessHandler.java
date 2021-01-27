@@ -22,7 +22,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private UserService userService;
 
     @Autowired
-    public  LoginSuccessHandler(UserService userService){
+    public LoginSuccessHandler(UserService userService) {
         this.userService = userService;
     }
 
@@ -31,6 +31,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
+
         if (roles.contains("ADMIN")) {
             httpServletResponse.sendRedirect("/admin");
         } else if (roles.contains("USER")) {
