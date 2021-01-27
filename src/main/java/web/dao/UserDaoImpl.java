@@ -27,8 +27,8 @@ public class UserDaoImpl implements UserDao {
 
         // return entityManager.find(User.class, name);//переделать на HQl
 
-        String hql = "FROM users Where username=:username";
-        Query query = entityManager.createQuery(hql).setParameter("username", username);
+        String hql = "FROM User Where username=:username";
+        Query query = entityManager.createQuery(hql).setParameter("username", username);//users in not mapped
         return (User) query.getSingleResult();
     }
 
