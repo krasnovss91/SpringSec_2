@@ -25,11 +25,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByUsername(String username) {
 
+        String hql = "FROM User Where name=:name";
+        Query query = entityManager.createQuery(hql).setParameter("username", username);
+
+        return (User) query.getSingleResult();
         // return entityManager.find(User.class, name);//переделать на HQl
 
-        String hql = "FROM User Where username=:username";
-        Query query = entityManager.createQuery(hql).setParameter("username", username);//users in not mapped
-        return (User) query.getSingleResult();
     }
 
     @Override
