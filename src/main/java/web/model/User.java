@@ -20,9 +20,6 @@ public class User implements UserDetails {
     @Column(name = "PASSWORD")
     private String password;
 
-
-//    @Column(name = "ROLE")//  private String role;
-
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
     

@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao {
         Query query = entityManager.createQuery(hql).setParameter("username", username);
 
         return (User) query.getSingleResult();
-        // return entityManager.find(User.class, name);//переделать на HQl
 
     }
 
