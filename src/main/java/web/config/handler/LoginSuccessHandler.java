@@ -61,35 +61,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 */
 /*
 
-        try {
-
-            boolean admin = false;
-
          //   for (GrantedAuthority authority : authentication.getPrincipal()) {
                 Role role = userService.getRoleByName(authentication.getPrincipal().toString());
 
                 if ("ADMIN".equals(role)) {
                     admin = true;
                 }
-       //     }
 
-            for (GrantedAuthority auth : authentication.getAuthorities()) {
-                if ("ADMIN".equals(auth.getAuthority())) {
-                    //       String role = userService.getRoleByName(auth.getPrincipal)
-                    //    if("ADMIN".equals(role)){
-                    admin = true;
-                }
-            }
-
-
-            if (admin) {
-                httpServletResponse.sendRedirect("/admin");
-            } else {
-                httpServletResponse.sendRedirect("/user");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
 
         }
         */
