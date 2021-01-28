@@ -33,10 +33,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         boolean admin = false;
 
-        for (GrantedAuthority auth : authentication.getAuthorities()) {
+        for (GrantedAuthority auth : authentication.getAuthorities()) {//летит здесь
             if ("ADMIN".equals(auth.getAuthority())) {
 
-                admin = true;
+                admin = true;//сюда уже не долетает
             }
         }
 
