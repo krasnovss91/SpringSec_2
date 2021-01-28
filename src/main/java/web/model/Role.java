@@ -16,9 +16,7 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "name", unique = true)
     private String name;
-
-    private String authority;
-
+    
     //@JoinColumn(name = "name")
     //@ManyToMany(mappedBy = "role_id")если это вставить в скобки строкой ниже, при запуске летит ошибка
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
