@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import web.model.Role;
+import web.model.User;
 import web.service.UserService;
 
 import javax.servlet.ServletException;
@@ -33,10 +34,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         boolean admin = false;
 
-        for (GrantedAuthority auth : authentication.getAuthorities()) {//летит здесь
+        for (GrantedAuthority auth : authentication.getAuthorities()) {//здесь пусто
             if ("ADMIN".equals(auth.getAuthority())) {
 
-                admin = true;//сюда уже не долетает
+                admin = true;
             }
         }
 

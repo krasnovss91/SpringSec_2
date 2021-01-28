@@ -44,6 +44,7 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.roles = new HashSet<>(Arrays.asList(roles));
+       // this.authorities = new HashSet<>(Arrays.asList(roles));
     }
 
 
@@ -83,14 +84,14 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     public Role getRoles() {
         return (Role) roles;
     }
 
     public void setRoles(Role roles) {
         this.roles = (Set<Role>) roles; }
-
+*/
     public boolean isEnabled() {
         return enabled;
     }
@@ -101,12 +102,12 @@ public class User implements UserDetails {
 
 
     public Set<Role> getAuthorities() {
-        //return authorities;
+      //  return authorities;
         return roles;
     }
 
-    public void setAuthorities(Set<Role> authorities) {
-       // this.authorities = authorities;
+    public void setAuthorities(Set<Role> authorities) { //нет связи с Roles
+        //this.authorities = authorities;
         this.roles = roles;
     }
 

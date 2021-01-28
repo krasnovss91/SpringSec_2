@@ -41,11 +41,11 @@ public class Role implements GrantedAuthority {
     }
 
     public String getAuthority() {
-        return authority;
+        return name;
     }
 
     public void setAuthority(String authority) {
-        this.authority = authority;
+        this.authority = name;
     }
 /*
     public User getUser(){
