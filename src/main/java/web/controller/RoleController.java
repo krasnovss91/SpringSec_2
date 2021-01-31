@@ -17,7 +17,7 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @PostMapping("/roles")
+    @PostMapping("/roles/{name}")
     public String getRoleByName(@PathVariable("name") String name){
         roleService.findRoleByName(name);
         return "redirect:/admin";
