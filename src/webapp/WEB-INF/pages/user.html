@@ -11,6 +11,8 @@
     <table>
         <tr th:each="user : ${users}">
             <p>
+            <td th:text="${user.id}"
+            </td>
             <td th:text="${user.username}"
             </td>
             <td th:text="${user.password}"
