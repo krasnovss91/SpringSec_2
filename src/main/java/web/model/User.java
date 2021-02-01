@@ -96,6 +96,9 @@ public class User implements UserDetails {
         return roles;
     }
 
+    public Set<Role> getRoles(){
+        return roles;
+    }
    public  void setRoles (Set<Role> roles){
         //this.authorities = authorities;
         this.roles = roles;
