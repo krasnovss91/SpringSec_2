@@ -7,6 +7,7 @@ import web.model.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -26,6 +27,11 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public Role getRoleById(long id) {
         return entityManager.find(Role.class, id);
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        return entityManager.createQuery("SELECT e FROM Role e", Role.class).getResultList();
     }
 
 }
