@@ -4,4 +4,6 @@ import web.model.Role;
 
 public interface RoleDao {
     Role findRoleByName (String name);
+
+    Role getRoleById(long id);
 }
