@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void setUserRoles(User user) {
         user.setRoles(user
-                .getAuthorities()//getRoles
+                .getRoles()
                 .stream()
                 .map(role -> userDao.getRoleByName(role.getName()))
                 .collect(Collectors.toSet()));
