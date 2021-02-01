@@ -4,4 +4,6 @@ import web.model.Role;
 
 public interface RoleService {
     Role findRoleByName(String name);
+
+    Role getRoleById(long id);
 }
