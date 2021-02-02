@@ -19,11 +19,11 @@ public class Role implements GrantedAuthority {
     private String name;
 
     //@JoinColumn(name = "name")
-    //@ManyToMany(mappedBy = "role_id")если это вставить в скобки строкой ниже, при запуске летит ошибка
+
     @ManyToMany(mappedBy = "roles",cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<User> users;
-   // private User user;
 
     public long getId(){return id;}
 

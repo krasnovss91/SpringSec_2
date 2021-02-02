@@ -34,7 +34,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         boolean admin = false;
 
-        for (GrantedAuthority auth : authentication.getAuthorities()) {//здесь пусто
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
             if ("ADMIN".equals(auth.getAuthority())) {
 
                 admin = true;
