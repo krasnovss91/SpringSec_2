@@ -24,8 +24,6 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
-    //  @OneToMany(cascade = CascadeType.DETACH, mappedBy = "user", fetch = FetchType.EAGER)
-    //mappedBy="user_id"
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 
     @JoinTable(
@@ -92,7 +90,6 @@ public class User implements UserDetails {
 
 
     public Set<Role> getAuthorities() {
-        //  return authorities;
         return roles;
     }
 
