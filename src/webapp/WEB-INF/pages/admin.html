@@ -16,7 +16,7 @@
                 <td width="120">id</td>
                 <td width="120">name</td>
                 <td width="120">password</td>
-                <td width="120">role</td>
+                <td width="120">roles</td>
                 <td width="50">edit</td>
                 <td width="50">delete</td>
             </tr>
@@ -32,6 +32,7 @@
 
                     <td>
                         <a th:href="@{/admin/edit/{name}(name=${user.username})}">edit</a>
+                        <!---   <a th:href="@{/showUserForm/edit/{id}(id=${user.id})}">edit</a> --->
                     </td>
                     <td>
                         <a th:href="@{/admin/delete/{name}(name=${user.username})}">delete</a>
