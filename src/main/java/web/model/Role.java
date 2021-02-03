@@ -20,10 +20,10 @@ public class Role implements GrantedAuthority {
 
     //@JoinColumn(name = "name")
 
-    @ManyToMany(mappedBy = "roles",cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+  //  @ManyToMany(mappedBy = "roles",cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<User> users;
+  //  @OnDelete(action = OnDeleteAction.CASCADE)
+   // private List<User> users;
 
     public long getId(){return id;}
 
@@ -57,12 +57,12 @@ public class Role implements GrantedAuthority {
 */
 
 
-    public List<User> getUsers() {
-        return users;
-    }
+   // public List<User> getUsers() {
+     //   return users;
+   // }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+   // public void setUsers(List<User> users) {
+     //   this.users = users;
+   // }
 
 }
