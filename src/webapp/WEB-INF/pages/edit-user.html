@@ -15,7 +15,7 @@
         <!-----
                             <td>
                         <div th:each="role: ${user.roles}">
-                            <div th:text="${role.name}"></div>
+                           <input type="text" th:field="*{role.name}" required/>
                         </div>
                     </td>
         ----->
