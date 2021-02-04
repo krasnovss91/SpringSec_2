@@ -27,7 +27,7 @@
                         <a th:href="@{/admin/{name}(name=${user.username})}" th:text="${user.username}"></a>
                     </td>
                     <td th:text="${user.password}"></td>
-                    
+
                     <td>
                         <div th:each="role: ${user.roles}">
                             <div th:text="${role.name}"></div>
