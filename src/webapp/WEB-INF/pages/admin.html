@@ -29,6 +29,10 @@
                     <td th:text="${user.password}"></td>
 
                     <td th:text="${user.roles}"></td>
+                    <!----
+                    внешний div - здесь итератор по ролям данного юзера
+внутренний div - здесь тупо <div th:text="${role.name}"></div>
+----->
 
                     <td>
                         <a th:href="@{/admin/edit/{id}(id=${user.id})}">edit</a>
