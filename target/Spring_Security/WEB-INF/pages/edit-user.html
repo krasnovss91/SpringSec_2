@@ -12,6 +12,13 @@
     <p>name: <input type="text" th:field="*{username}" required/></p>
     <p>password: <input type="text" th:field="*{password}" required/></p>
     <p>roles:
+        <!-----
+                            <td>
+                        <div th:each="role: ${user.roles}">
+                            <div th:text="${role.name}"></div>
+                        </div>
+                    </td>
+        ----->
        <input type="text" th:field="*{roles}" required/>
     </p>
     <p>
