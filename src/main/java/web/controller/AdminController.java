@@ -55,7 +55,7 @@ public class AdminController {
     }
 
     @PostMapping("admin/edit/admin/edit")
-    public String editUser(@ModelAttribute("editUser") User user) {
+    public String editUser(@ModelAttribute("editUser") User user) {//пользователь прилетает сюда с пустым id
         userService.editUser(user);
 
         return "redirect:/admin";
