@@ -1,6 +1,7 @@
 package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
@@ -40,6 +41,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(User user) {
        setUserRoles(user);
+        String password = user.getPassword();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(password);
+
+        user.setPassword(encodedPassword);
+
        userDao.editUser(user);
     }
 

@@ -66,13 +66,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
-
+ /*
         String password = user.getPassword();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
-
+*/
         entityManager.merge(user);//создаётся новый пользователь при любых изменениях, не только роли
 
     }
