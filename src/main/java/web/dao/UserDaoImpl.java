@@ -73,7 +73,9 @@ public class UserDaoImpl implements UserDao {
 
         user.setPassword(encodedPassword);
 */
-        entityManager.merge(user);//создаётся новый пользователь при любых изменениях, не только роли
+        if(user.getId()!= 0) {
+            entityManager.merge(user);//создаётся новый пользователь при любых изменениях, не только роли
+        }
 
     }
 
