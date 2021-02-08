@@ -37,16 +37,6 @@ public class AdminController {
 
         return "redirect:/admin";
     }
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user) {
-        if (user.getUsername() != null) {
-            userService.saveUser(user);
-        } else {
-            userService.editUser(user);
-        }
-
-        return "redirect:/admin";
-    }
 
     @GetMapping("admin/edit/{id}")
     public String editUser(@PathVariable("id") long id, Model model) {
