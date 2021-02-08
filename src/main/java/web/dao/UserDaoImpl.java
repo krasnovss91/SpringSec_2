@@ -1,11 +1,8 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.config.SecurityConfig;
 import web.model.Role;
 import web.model.User;
 
@@ -66,15 +63,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void editUser(User user) {
- /*
-        String password = user.getPassword();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(password);
 
-        user.setPassword(encodedPassword);
-*/
         if(user.getId()!= 0) {
-            entityManager.merge(user);//создаётся новый пользователь при любых изменениях, не только роли
+            entityManager.merge(user);
         }
 
     }
