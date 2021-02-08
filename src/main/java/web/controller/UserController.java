@@ -50,22 +50,4 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("/register")
-    public String registerForm(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("listUsers", userService.getAllUsers());
-        return "register";
-    }
-
-    @PostMapping("admin/register")
-    public String registerUser(@ModelAttribute User user) {
-        if (user.getUsername() != null) {
-            userService.saveUser(user);
-        } else {
-            userService.editUser(user);
-        }
-
-        return "redirect:/admin";
-    }
-
 }
