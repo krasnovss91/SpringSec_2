@@ -31,13 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        try {
+
             http
                     .csrf().disable()
                     .authorizeRequests()
                     .antMatchers("/login").permitAll()
-                    .antMatchers("/admin/**").hasAuthority("ADMIN")
-                    .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
+                    .antMatchers("/admin/**").permitAll()
+                    .antMatchers("/user/**").permitAll()
+                    //.antMatchers("/admin/**").hasAuthority("ADMIN")
+                    //.antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -47,9 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("j_username")
                     .passwordParameter("j_password");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
 
