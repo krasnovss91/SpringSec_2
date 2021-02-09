@@ -31,13 +31,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        /*
-        String password = user.getPassword();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(password);
-
-        user.setPassword(encodedPassword);
-        */
 
         if (user.getUsername() != null) {
             entityManager.persist(user);

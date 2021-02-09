@@ -18,7 +18,7 @@ public class AdminController {
 
         this.userService = userService;
     }
-    
+
     @GetMapping
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
