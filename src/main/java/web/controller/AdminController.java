@@ -8,7 +8,7 @@ import web.model.User;
 import web.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class AdminController {
 
     private UserService userService;
@@ -18,15 +18,15 @@ public class AdminController {
 
         this.userService = userService;
     }
-
-    @GetMapping("/admin")
+    
+    @GetMapping
     public String showUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userService.getAllUsers());
         return "admin";
     }
 
-    @PostMapping("admin/add")
+    @PostMapping("/add")
     public String addUser(@ModelAttribute User user) {
 
         if (user.getUsername() != null) {
@@ -38,19 +38,19 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "edit-user";
     }
 
-    @PostMapping("admin/edit/admin/edit")
+    @PostMapping("/edit/admin/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/delete/{id}")
+    @PostMapping("/delete/{id}")//сделать удаление без переменной. С ней метод Post работать не может
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
