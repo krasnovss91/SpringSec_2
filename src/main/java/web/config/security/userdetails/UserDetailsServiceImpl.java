@@ -15,7 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String username){
+    public UserDetails loadUserByUsername(String username) {
         User user = null;
         try {
             user = userService.findUserByName(username);
@@ -25,13 +25,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-
+        return user;
+/*
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
                 user.getRoles()
         );
-
+*/
     }
 
 }
