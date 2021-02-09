@@ -14,17 +14,22 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-   private UserDao userDao;
+    private UserDao userDao;
 
-   @Autowired
-   public UserServiceImpl(UserDao userDao) {
-       this.userDao = userDao;
-   }
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public void saveUser(User user) {
-       setUserRoles(user);
-       userDao.saveUser(user);
+        setUserRoles(user);
+        String password = user.getPassword();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(password);
+
+        user.setPassword(encodedPassword);
+        userDao.saveUser(user);
     }
 
     @Override
@@ -40,14 +45,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(User user) {
-       setUserRoles(user);
+        setUserRoles(user);
         String password = user.getPassword();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
 
-       userDao.editUser(user);
+        userDao.editUser(user);
     }
 
     @Transactional
@@ -72,7 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Role getRoleByName(String name){
-       return userDao.getRoleByName(name);
+    public Role getRoleByName(String name) {
+        return userDao.getRoleByName(name);
     }
 }
