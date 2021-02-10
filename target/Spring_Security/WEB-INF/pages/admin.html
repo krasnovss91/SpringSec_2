@@ -39,22 +39,12 @@
                     </td>
                     <td>
 
-                        <form method="POST" th:action="@{/admin/delete}">
+                        <form method="POST" th:action="@{/admin/delete}" th:object="${user}">
                             <button type="submit" name="submit" value="value">delete</button>
                         </form>
-             <!---           <a th:href="@{/admin/delete/{id}(id=${user.id})}">delete</a> --->
+
          <!--           <a th:href ="@{/admin/delete}" >delete</a> -->
-
-                        <!----
-                        <form method="POST" th:action="@{/edit(personId=${person.personId})}">
-    <button type="submit" name="submit" value="value" class="link-button">This is a link that sends a POST request</button>
-</form>
-
-    <form method="POST" th:action="@{/admin/delete}">
-        <button type="submit" name="submit" value="value">delete</button>
-    </form>
-
--->
+                        
                     </td>
                 </tr>
             </th:block>
