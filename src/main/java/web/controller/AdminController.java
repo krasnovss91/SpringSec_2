@@ -44,7 +44,7 @@ public class AdminController {
         return "edit-user";
     }
 
-    @PostMapping("/edit/admin/edit")
+    @PostMapping("/edit")
     public String editUser(@ModelAttribute("editUser") User user) {
         userService.editUser(user);
         return "redirect:/admin";
