@@ -51,10 +51,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/delete")
-    public String deleteUser(@ModelAttribute User user){
+  //  @PostMapping("/delete/")
+   // public String deleteUser(@ModelAttribute User user){
+  @PostMapping("/delete/{id}")
+  public String deleteUser(@RequestParam("id") long id) {
 
-        long id = user.getId();
+      //  long id = user.getId();
         userService.deleteUser(id);
         return "redirect:/admin";
     }
