@@ -38,12 +38,16 @@
                         <a th:href="@{/admin/edit/{id}(id=${user.id})}">edit</a>
                     </td>
                     <td>
-
+                        <form action="#" th:action="@{/delete}" method="POST"
+                            th:value="${user.id}" />
+                            <button type="submit"> delete </button>
+                        </form>
+<!---
                         <form method="POST" th:action="@{/admin/delete}" th:object="${user}">
                             <button type="submit" name="submit" value="value">delete</button>
                         </form>
 
-         <!--           <a th:href ="@{/admin/delete}" >delete</a> -->
+                   <a th:href ="@{/admin/delete}" >delete</a> -->
                         
                     </td>
                 </tr>

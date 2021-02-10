@@ -45,15 +45,15 @@ public class AdminController {
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("editUser") User user) {
+    public String editUser(@ModelAttribute("editUser") User user, Model model) {
+        model.addAttribute("user",user);
         userService.editUser(user);
         return "redirect:/admin";
     }
 
-  //  @PostMapping("/delete/{id}")//сделать удаление без переменной. С ней метод Post работать не может
-  //  public String deleteUser(@PathVariable("id") long id) {
     @PostMapping("/delete")
     public String deleteUser(@ModelAttribute User user){
+
         long id = user.getId();
         userService.deleteUser(id);
         return "redirect:/admin";
