@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private boolean enabled;
 
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+  //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 
     @JoinTable(
             name = "users_roles",
