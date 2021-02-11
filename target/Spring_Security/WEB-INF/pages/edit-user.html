@@ -8,7 +8,7 @@
 <body>
 
 <h1>edit user form</h1>
-<form class="tg" action="#" th:action="@{/admin}" th:object="${user}" method="post">
+<form class="tg" action="#" th:action="@{/admin/edit(id=${user.getId()})}" th:object="${user}" method="post">
     <p>id: <input type="text" th:field="*{id}" required/></p>
     <p>name: <input type="text" th:field="*{username}" required/></p>
     <p>password: <input type="text" th:field="*{password}" required/></p>
