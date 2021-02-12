@@ -8,28 +8,24 @@
 <body>
 
 <h1>edit user form</h1>
-<form class="tg" action="#" th:action="@{/admin/edit(id=${user.getId()})}" th:object="${user}" method="post">
-    <p>id: <input type="text" th:field="*{id}" required/></p>
-    <p>name: <input type="text" th:field="*{username}" required/></p>
-    <p>password: <input type="text" th:field="*{password}" required/></p>
-    <p>roles:
 
-        <select name="roles" id="roles" multiple>
-            <option value="ADMIN">ADMIN</option>
-            <option value="USER">USER</option>
-        </select>
-    </p>
-    <p>
-        <button type="submit" name="submit" value="submit">Submit</button>
-    <!---    <input type="submit" value="Submit" /> -->
-    <!--
-    <form method="POST" >
-        <button type="submit" name="submit" value="submit">Submit</button>
-    </form>
-    --->
-        <input type="reset" value="Reset" />
-    </p>
+<form action="#" method="POST">
+    <input type="hidden" name="id" th:value="${user.id}">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" th:value="${user.username}">
+    <br/>
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" th:value="${user.password}">
+    <br/>
+
+    <select name="roles" id="roles" multiple>
+        <option value="ROLE_ADMIN">ADMIN</option>
+        <option value="ROLE_USER">USER</option>
+    </select>
+    <input type="submit" value="Edit">
 </form>
+
 </div>
 <br/>
 
