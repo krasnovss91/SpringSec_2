@@ -44,25 +44,31 @@ public class AdminController {
         model.addAttribute("user", userService.getUserById(id));
         return "edit-user";
     }
-/*
-    @PostMapping(value ="/edit", params = "id")
-    public String editUser(@ModelAttribute("editUser")  @RequestParam("id") long id) {
-        //model.addAttribute("user",user);
-        User user = userService.getUserById(id);
-        userService.editUser(user);
+
+    @PostMapping(value = "/edit", params = "id")
+    public String editUser(@RequestParam("id") long id){
+        userService.editUser(userService.getUserById(id));
         return "redirect:/admin";
     }
-*/
-@PostMapping(value = "/edit")
-public ModelAndView editUser(@ModelAttribute User user) {
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("redirect:/admin");
-    userService.editUser(user);
-    return modelAndView;
-}
+    /*
+        @PostMapping(value ="/edit", params = "id")
+        public String editUser(@ModelAttribute("editUser")  @RequestParam("id") long id) {
+            //model.addAttribute("user",user);
+            User user = userService.getUserById(id);
+            userService.editUser(user);
+            return "redirect:/admin";
+        }
 
+    @PostMapping(value = "/edit")
+    public ModelAndView editUser(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/admin");
+        userService.editUser(user);
+        return modelAndView;
+    }
+ */
     @PostMapping(value = "/delete",params = "id")
-  public String deleteUser(@RequestParam("id") long id){
+    public String deleteUser(@RequestParam("id") long id){
         userService.deleteUser(id);
         return "redirect:/admin";
     }
