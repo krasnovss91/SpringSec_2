@@ -8,8 +8,11 @@
 <body>
 
 <h1>edit user form</h1>
-
-<form action="{${user.id}}" method="POST">
+<!--- 
+        <form action="/admin/edit" method="POST">
+            <input type="hidden" name="id" th:value="${user.id}">
+--->
+<form action="/admin/edit" method="POST">
     <input type="hidden" name="id" th:value="${user.id}">
 
     <label for="username">Username</label>
