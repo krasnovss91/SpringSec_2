@@ -46,11 +46,24 @@ public class AdminController {
     }
 
     @PostMapping(value = "/edit", params = "id")
+    public ModelAndView editUser(@RequestParam ("id") long id, @ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/admin");
+        User user1 = userService.getUserById(id);
+        if(user1.equals(user)) {
+            userService.saveUser(user);
+        }
+        return modelAndView;
+    }
+
+/*
+    @PostMapping(value = "/edit", params = "id")
     public String editUser(@RequestParam("id") long id){
         userService.editUser(userService.getUserById(id));
         return "redirect:/admin";
     }
-    /*
+
+
         @PostMapping(value ="/edit", params = "id")
         public String editUser(@ModelAttribute("editUser")  @RequestParam("id") long id) {
             //model.addAttribute("user",user);
@@ -59,13 +72,7 @@ public class AdminController {
             return "redirect:/admin";
         }
 
-    @PostMapping(value = "/edit")
-    public ModelAndView editUser(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/admin");
-        userService.editUser(user);
-        return modelAndView;
-    }
+
  */
     @PostMapping(value = "/delete",params = "id")
     public String deleteUser(@RequestParam("id") long id){
