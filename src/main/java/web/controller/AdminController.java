@@ -51,7 +51,7 @@ public class AdminController {
         modelAndView.setViewName("redirect:/admin");
         User user1 = userService.getUserById(id);
         if(user1.equals(user)) {
-            userService.saveUser(user);
+            userService.saveUser(user);//валится здесь
         }
         return modelAndView;
     }
