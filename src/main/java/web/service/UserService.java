@@ -21,5 +21,7 @@ public interface UserService {
     Role getRoleByName(String name);
 
     public void setUserRoles(User user);
+
+
 }
 

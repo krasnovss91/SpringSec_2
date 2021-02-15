@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
+
     }
 
     @Override
@@ -63,6 +64,7 @@ public class UserServiceImpl implements UserService {
                 .map(role -> userDao.getRoleByName(role.getName()))
                 .collect(Collectors.toSet()));
     }
+
 
 
     @Override

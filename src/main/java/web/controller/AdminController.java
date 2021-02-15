@@ -14,6 +14,8 @@ public class AdminController {
 
     private UserService userService;
 
+
+
     @Autowired
     public AdminController(UserService userService) {
 
@@ -49,12 +51,13 @@ public class AdminController {
     public ModelAndView editUser(@RequestParam ("id") long id, @ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
-        User user1 = userService.getUserById(id);
-        if(user1.equals(user)) {
+      //  User user1 = userService.getUserById(id);
+       // if(user1.equals(user)) {
             userService.saveUser(user);//валится здесь
-        }
+   //     }
         return modelAndView;
     }
+
 
 /*
     @PostMapping(value = "/edit", params = "id")
