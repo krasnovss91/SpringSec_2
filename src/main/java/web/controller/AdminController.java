@@ -46,10 +46,8 @@ public class AdminController {
         return "edit-user";
     }
 
-    @PostMapping(value = "/edit", params = "id")
-   // public String editUser(@ModelAttribute("editUser") User user, @RequestParam("id") long id) {
+    @PostMapping(value = "/edit", params = "username")
     public String editUser(@RequestParam("username") String username, Model model) {
-        //userService.editUser(userService.getUserById(id));
         userService.editUser(userService.findUserByName(username));
         model.addAttribute("user",userService.findUserByName(username));
         return "redirect:/admin";
