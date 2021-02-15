@@ -14,11 +14,8 @@ import java.io.IOException;
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    private UserService userService;
-
     @Autowired
-    public LoginSuccessHandler(UserService userService) {
-        this.userService = userService;
+    public LoginSuccessHandler() {
     }
 
     @Override
