@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
   //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 
     @JoinTable(

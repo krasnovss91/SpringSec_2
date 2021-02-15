@@ -3,6 +3,7 @@ package web.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -14,6 +15,11 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "name", unique = true)
     private String name;
+/*
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+    private Set<User> users;
+
+ */
 
     public Role() {}
 
