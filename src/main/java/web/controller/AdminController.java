@@ -48,6 +48,13 @@ public class AdminController {
     }
 
     @PostMapping(value = "/edit", params = "id")
+    public String editUser(@ModelAttribute("editUser") User user, @RequestParam("id") long id) {
+        userService.editUser(user);
+        return "redirect:/admin";
+    }
+
+/*
+    @PostMapping(value = "/edit", params = "id")
     public ModelAndView editUser(@RequestParam ("id") long id, @ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/admin");
@@ -57,7 +64,7 @@ public class AdminController {
         }
         return modelAndView;
     }
-
+*/
 
 /*
     @PostMapping(value = "/edit", params = "id")
