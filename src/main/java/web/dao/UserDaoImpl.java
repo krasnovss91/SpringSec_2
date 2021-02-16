@@ -51,18 +51,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Role getRoleByName(String role_name) {
-       // return entityManager.createQuery("from Role where name =:name", Role.class)
-         //       .setParameter("name", name)
         return (Role) entityManager.createQuery("SELECT r FROM Role r WHERE r.name LIKE :role_name")
-                .setParameter("role_name",role_name)
+                .setParameter("role_name", role_name)
                 .getSingleResult();
-                //.getResultList().stream().findFirst().orElse(null);
     }
 
     @Override
     public void editUser(User user) {
 
-        if(user.getId()!= 0) {
+        if (user.getId() != 0) {
             entityManager.merge(user);
         }
 
