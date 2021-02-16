@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import web.model.User;
 import web.service.UserService;
 
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -25,8 +26,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-        return user;
+       // return user;//при входе падает здесь
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getRoles()
+        );
 
     }
 
 }
+
