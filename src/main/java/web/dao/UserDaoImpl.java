@@ -1,6 +1,5 @@
 package web.dao;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
@@ -54,7 +53,7 @@ public class UserDaoImpl implements UserDao {
     public Role getRoleByName(String name) {
         return entityManager.createQuery("from Role where name =:name", Role.class)
                 .setParameter("name", name)
-                .getSingleResult();
+                .getResultList().stream().findFirst().orElse(null);
     }
 
     @Override
