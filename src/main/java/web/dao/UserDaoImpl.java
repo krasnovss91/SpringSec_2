@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery("SELECT e FROM User e", User.class).getResultList();
 
     }
-    
+
     @Override
     public Role getRoleByName(String role_name) {
        // return entityManager.createQuery("from Role where name =:name", Role.class)
