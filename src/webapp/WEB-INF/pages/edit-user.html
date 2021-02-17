@@ -11,10 +11,7 @@
 
 <form action="/admin/edit" method="POST">
     <input type="hidden" name="id" th:value="${user.id}">
-<!--- что если сюда добавить id --->
-    <label for="id">ID</label>
-    <input type="text" name="id" id="id" th:value="${user.id}">
-    <br/>
+    
     <label for="username">Username</label>
     <input type="text" name="username" id="username" th:value="${user.username}">
     <br/>
