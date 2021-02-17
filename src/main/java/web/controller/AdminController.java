@@ -33,8 +33,8 @@ public class AdminController {
 
         if (user.getUsername() != null) {
             userService.saveUser(user);
-        } else {
-            userService.editUser(user);
+ //       } else {
+   //         userService.editUser(user);
         }
 
         return "redirect:/admin";
@@ -46,10 +46,11 @@ public class AdminController {
         return "edit-user";
     }
 
-    @PostMapping(value ="/edit", params = "id")
-    public String editUser(@RequestParam("id") long id,@ModelAttribute("user") User user, Model model) {
+    //@PostMapping(value ="/edit", params = "id")
+    @PostMapping("/edit")
+    public String editUser(@RequestParam("id") long id,@ModelAttribute("user") User user, Model model,@RequestParam("password") String password) {
         user.setId(id);
-        userService.editUser(user);//закинуть в сервис через RequestParam пароль с формы и сравнить его там с паролем из базы? 2 параметра у этого метода?
+        userService.editUser(user,password);//закинуть в сервис через RequestParam пароль с формы и сравнить его там с паролем из базы? 2 параметра у этого метода?
         model.addAttribute("user", user);
         return "redirect:/admin";
     }

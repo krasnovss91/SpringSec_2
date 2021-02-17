@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user) {
+    public void editUser(User user,String password) {
         setUserRoles(user);
         String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение.
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
