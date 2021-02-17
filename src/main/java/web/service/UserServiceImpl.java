@@ -47,12 +47,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(User user,String password) {
         setUserRoles(user);
-        String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение.
+     //   String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение.
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-            String encodedPassword_1 = passwordEncoder.encode(password_1);
+     //       String encodedPassword_1 = passwordEncoder.encode(password_1);
 //проверять пароль и шифровать только если меняется при редактировании. Не сравнивать пароль с самим собой
-            user.setPassword(encodedPassword_1);//password_1 и encodedPassword1- не совпадают
+        if(!passwordEncoder.matches(password,user.getPassword())) {
+          //  user.setPassword(encodedPassword_1);//это делать уже после проверки
+            user.setPassword(passwordEncoder.encode(password));
+        }
         userDao.editUser(user);//проверить и шифровать пароль уже после занесения в бд?
         
 
