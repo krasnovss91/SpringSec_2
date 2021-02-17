@@ -46,9 +46,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(User user) {
-
         setUserRoles(user);
-        String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение
+        String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение.
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             String encodedPassword_1 = passwordEncoder.encode(password_1);
@@ -69,7 +68,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toSet()));
     }
 
-    
+
     @Override
     public void deleteUser(long id) {
         userDao.deleteUser(userDao.getUserById(id).getId());
