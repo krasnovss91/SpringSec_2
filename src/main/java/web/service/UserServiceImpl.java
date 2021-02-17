@@ -45,21 +45,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user,String password) {
+    public void editUser(User user, String password) {
         setUserRoles(user);
-     //   String password_1 = user.getPassword();//этот пароль надо как-то проверить на изменение.
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-     //       String encodedPassword_1 = passwordEncoder.encode(password_1);
-//проверять пароль и шифровать только если меняется при редактировании. Не сравнивать пароль с самим собой
-        if(!passwordEncoder.matches(password,user.getPassword())) {
-          //  user.setPassword(encodedPassword_1);//это делать уже после проверки
+        if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(password));
         }
-        userDao.editUser(user);//проверить и шифровать пароль уже после занесения в бд?
-        
+        userDao.editUser(user);
 
-        
+
     }
 
     @Transactional
