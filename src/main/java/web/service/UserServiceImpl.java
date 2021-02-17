@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
             long id = user.getId();
             String encodedPassword_1 = passwordEncoder.encode(password_1);
 //проверять пароль и шифровать только если меняется при редактировании. Не сравнивать пароль с самим собой
-            user.setPassword(encodedPassword_1);
+            user.setPassword(encodedPassword_1);//password_1 и encodedPassword1- не совпадают
         userDao.editUser(user);//проверить и шифровать пароль уже после занесения в бд?
 
         User user1 = getUserById(id);
