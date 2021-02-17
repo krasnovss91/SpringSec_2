@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         User user = null;
         try {
-            user = userService.findUserByName(username);//юзер подтягивается без проблем
+            user = userService.findUserByName(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
