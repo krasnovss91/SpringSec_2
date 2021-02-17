@@ -50,7 +50,7 @@ public class AdminController {
     @PostMapping("/edit")
     public String editUser(@RequestParam("id") long id,@ModelAttribute("user") User user, Model model,@RequestParam("password") String password) {
         user.setId(id);
-        userService.editUser(user,password);//закинуть в сервис через RequestParam пароль с формы и сравнить его там с паролем из базы? 2 параметра у этого метода?
+        userService.editUser(user,password);//закинуть в этот метод id, чтобы там через него вытащить юзера из бд?
         model.addAttribute("user", user);
         return "redirect:/admin";
     }
