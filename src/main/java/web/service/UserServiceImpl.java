@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {
+        if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {//это один и тот же пароль. Проблема!
             user.setPassword(passwordEncoder.encode(password));
         }
         userDao.editUser(user);
