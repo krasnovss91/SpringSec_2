@@ -31,8 +31,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                 admin = true;
             }
         }
-//не удаётся залогиниться, если только изменить роль или имя. При изменении пароля (или имени и пароля одновременно) таких проблем нет.
-//Если меняю всё сразу, тоже никаких проблем.
 
         if (admin) {
             httpServletResponse.sendRedirect("/admin");
