@@ -48,9 +48,11 @@ public class UserServiceImpl implements UserService {
     public void editUser(User user, String password) {
         setUserRoles(user);
 
+        User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {//это один и тот же пароль. Проблема!
+     //   if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {//это один и тот же пароль. Проблема!
+        if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
             user.setPassword(passwordEncoder.encode(password));//сравнить с юзером, которого достать из бд
         }
         userDao.editUser(user);
