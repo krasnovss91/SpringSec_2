@@ -51,9 +51,7 @@ public class UserServiceImpl implements UserService {
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-       // if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
-           // user.setPassword(passwordEncoder.encode(password));
             user.setPassword(password);
         }
         userDao.editUser(user);
