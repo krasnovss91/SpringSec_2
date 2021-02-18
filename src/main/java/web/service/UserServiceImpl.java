@@ -51,13 +51,10 @@ public class UserServiceImpl implements UserService {
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-     //   if (!passwordEncoder.matches(passwordEncoder.encode(password), user.getPassword())) {//это один и тот же пароль. Проблема!
-        if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
-            user.setPassword(passwordEncoder.encode(password));//сравнить с юзером, которого достать из бд
+        if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {//скормить этому методу нешифрованный пароль
+            user.setPassword(passwordEncoder.encode(password));
         }
         userDao.editUser(user);
-
-
     }
 
     @Transactional
