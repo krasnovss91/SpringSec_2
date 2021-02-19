@@ -5,12 +5,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
 
     @Autowired
     UserService userService;
@@ -26,16 +28,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user.equals(null)) {
             throw new UsernameNotFoundException(username);
         }
-      //  return user;//должно быть так
 
+        User userDetail = new User(user.getUsername(), user.getPassword(), (Role) user.getRoles());
+
+     //   return user;//должно быть так
+
+        return userDetail;
+
+
+/*
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
                 user.getRoles()
         );
 
+ */
 
     }
+
 
 }
 
