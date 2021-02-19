@@ -14,7 +14,6 @@ public class AdminController {
     private UserService userService;
 
 
-
     @Autowired
     public AdminController(UserService userService) {
 
@@ -30,13 +29,7 @@ public class AdminController {
 
     @PostMapping("/add")
     public String addUser(@ModelAttribute User user) {
-
-        if (user.getUsername() != null) {
-            userService.saveUser(user);
- //       } else {
-   //         userService.editUser(user);
-        }
-
+        userService.saveUser(user);
         return "redirect:/admin";
     }
 
@@ -46,18 +39,17 @@ public class AdminController {
         return "edit-user";
     }
 
-    //@PostMapping(value ="/edit", params = "id")
     @PostMapping("/edit")
-    public String editUser(@RequestParam("id") long id,@ModelAttribute("user") User user, Model model,@RequestParam("password") String password) {
+    public String editUser(@RequestParam("id") long id, @ModelAttribute("user") User user, Model model, @RequestParam("password") String password) {
         user.setId(id);
-        userService.editUser(user,password);//закинуть в этот метод id, чтобы там через него вытащить юзера из бд?
+        userService.editUser(user, password);
         model.addAttribute("user", user);
         return "redirect:/admin";
     }
 
 
-    @PostMapping(value = "/delete",params = "id")
-    public String deleteUser(@RequestParam("id") long id){
+    @PostMapping(value = "/delete", params = "id")
+    public String deleteUser(@RequestParam("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
