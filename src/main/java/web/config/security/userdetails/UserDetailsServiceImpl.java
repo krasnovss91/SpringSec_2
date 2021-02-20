@@ -19,6 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
+
+
         User user = null;
         try {
             user = userService.findUserByName(username);
@@ -31,9 +33,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User userDetail = new User(user.getUsername(), user.getPassword(), (Role) user.getRoles());
 
-     //   return user;//должно быть так
+//        return user;//должно быть так
 
-        return userDetail;
+        return userDetail;//сюда уже не доходит
+
 
 
 /*
