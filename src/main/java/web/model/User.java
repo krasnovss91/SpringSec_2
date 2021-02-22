@@ -98,11 +98,9 @@ public class User implements UserDetails {
         return roles;
     }
     public  void setRoles (Set<Role> roles){
-        this.roles = roles;
-        /*
-        this.gameCodes.clear();
-this.gameCodes.addAll(gameCodes);
-         */
+    //    this.roles = roles;
+        this.roles.clear();
+        this.roles.addAll(roles);
     }
 
 }
