@@ -20,12 +20,14 @@ public class User implements UserDetails {
 
     @Column(name = "PASSWORD")
     private String password;
-
+/*
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
+ */
+
     @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-  //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
 
     @JoinTable(
             name = "users_roles",
@@ -69,6 +71,11 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -80,7 +87,7 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     public boolean isEnabled() {
         return enabled;
     }
@@ -89,6 +96,7 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
+ */
 
     public Set<Role> getAuthorities() {
         return roles;
