@@ -33,21 +33,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
        // User userDetail = new User(user.getUsername(), user.getPassword(), (Role) user.getRoles());
 
-    //   return user;//должно быть так; cannot cast org.hibernate.collection.internal.persistentset
+       return user;//должно быть так; cannot cast org.hibernate.collection.internal.persistentset
 
       //  return userDetail;//сюда уже не доходит
-
-
-
-
+/*
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
                 user.getRoles()
         );
 
-
-
+ */
     }
 
 
