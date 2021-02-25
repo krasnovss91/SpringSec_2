@@ -2,14 +2,17 @@ package web.model;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -21,8 +24,9 @@ public class User implements UserDetails {
     @Column(name = "PASSWORD")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-    //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+   // @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
+      @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+      @Fetch(FetchMode.SELECT)
 
     @JoinTable(
             name = "users_roles",

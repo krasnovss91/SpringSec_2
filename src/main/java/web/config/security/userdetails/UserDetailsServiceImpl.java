@@ -31,11 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
-       // User userDetail = new User(user.getUsername(), user.getPassword(), (Role) user.getRoles());
+       return user;
 
-       return user;//должно быть так; cannot cast org.hibernate.collection.internal.persistentset
-
-      //  return userDetail;//сюда уже не доходит
 /*
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),

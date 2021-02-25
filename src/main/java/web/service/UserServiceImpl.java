@@ -49,16 +49,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(User user, String password) {
         setUserRoles(user);
-
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
             user.setPassword(password);
         }
-
         userDao.editUser(user);
     }
+
 
     @Transactional
     public void setUserRoles(User user) {
