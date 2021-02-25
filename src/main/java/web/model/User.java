@@ -20,11 +20,6 @@ public class User implements UserDetails {
 
     @Column(name = "PASSWORD")
     private String password;
-/*
-    @Column(name = "ENABLED", nullable = false)
-    private boolean enabled;
-
- */
 
     @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     //  @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
@@ -87,16 +82,6 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-/*
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
- */
 
     public Set<Role> getAuthorities() {
         return roles;
