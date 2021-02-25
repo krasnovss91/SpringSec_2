@@ -25,13 +25,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         setUserRoles(user);
-        /*
+
         String password = user.getPassword();
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
-         */
+
         userDao.saveUser(user);
     }
 
@@ -49,14 +49,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(User user, String password) {
         setUserRoles(user);
-/*
+
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
             user.setPassword(password);
         }
-        */
+
         userDao.editUser(user);
     }
 
