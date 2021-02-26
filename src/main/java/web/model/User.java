@@ -24,10 +24,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-   // @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-      @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-      @Fetch(FetchMode.SELECT)
+    @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
+     // @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    //  @Fetch(FetchMode.SELECT)
 
+   // @ManyToMany
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "user_id"),
