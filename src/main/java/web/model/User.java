@@ -26,7 +26,7 @@ public class User implements UserDetails, Serializable {
 
    // @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
   //  @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "users_roles",
