@@ -34,7 +34,7 @@ public class User implements UserDetails, Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "role_id")
     )
 
-    private Set<Role> roles;
+    private Set<Role> roles;//JPA не находит эту коллекцию
 
     public User() {}
 
