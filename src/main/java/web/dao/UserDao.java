@@ -1,10 +1,13 @@
 package web.dao;
 
+
+import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
+//@Transactional
 public interface UserDao {
     User findUserByUsername(String username);
 

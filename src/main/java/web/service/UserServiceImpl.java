@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserById(id);
     }
     //org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: web.model.User.roles, could not initialize proxy - no Session
- //  @Transactional
+  // @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();

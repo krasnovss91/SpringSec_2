@@ -1,10 +1,12 @@
 package web.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
+//@Transactional
 public interface UserService {
     void saveUser(User user);
 
