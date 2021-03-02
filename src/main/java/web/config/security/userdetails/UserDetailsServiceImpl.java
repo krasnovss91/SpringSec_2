@@ -26,12 +26,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     EntityManager entityManager;
 
     @Override
-   // @Transactional
+    // @Transactional
     public UserDetails loadUserByUsername(String username) {
-  Query query = entityManager.createQuery("SELECT e FROM User e join fetch e.roles where e.username =: username");
+        Query query = entityManager.createQuery("SELECT e FROM User e join fetch e.roles where e.username =: username");
 
-  query.setParameter('username',username);
-        
+        query.setParameter("username", username);
+
+        User result = null;
+
+        try {
+            result = (User) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
 /*
         User user = null;
         try {
@@ -44,33 +52,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
        return user;
-       /*
-public Person findByNameWithJoinFech(String name) {
-  Query query = entityManager.createQuery('select p from Person p join fetch p.lazyDogs where p.name = :name');
-  query.setParameter('name', name);
-
-  Person result = null;
-  try {
-   result = (Person) query.getSingleResult();
-  } catch (NoResultException e) {
-   // no result found
-  }
-
-  return result;
- }
- */
 
 
-/*
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                user.getRoles()
-        );
-
- */
     }
 
 
 }
 
+
+ */
+    }
+}
