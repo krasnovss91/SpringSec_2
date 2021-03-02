@@ -10,6 +10,10 @@ import web.model.Role;
 import web.model.User;
 import web.service.UserService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -18,11 +22,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserService userService;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
     @Override
    // @Transactional
     public UserDetails loadUserByUsername(String username) {
+  Query query = entityManager.createQuery("SELECT e FROM User e join fetch e.roles where e.username =: username");
 
-
+  query.setParameter('username',username);
+        
+/*
         User user = null;
         try {
             user = userService.findUserByName(username);
@@ -34,6 +44,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
        return user;
+       /*
+public Person findByNameWithJoinFech(String name) {
+  Query query = entityManager.createQuery('select p from Person p join fetch p.lazyDogs where p.name = :name');
+  query.setParameter('name', name);
+
+  Person result = null;
+  try {
+   result = (Person) query.getSingleResult();
+  } catch (NoResultException e) {
+   // no result found
+  }
+
+  return result;
+ }
+ */
+
 
 /*
         return new org.springframework.security.core.userdetails.User(
