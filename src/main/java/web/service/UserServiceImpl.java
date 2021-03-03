@@ -2,6 +2,7 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
@@ -16,6 +17,8 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
+    //@Autowired
+    //PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -27,11 +30,10 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
 
         String password = user.getPassword();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
-
         userDao.saveUser(user);
     }
 
@@ -53,8 +55,8 @@ public class UserServiceImpl implements UserService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//этот метод принимает нешифрованные пароли
-         //  user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
-           user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае. Тестирование показывает, что пароли
+            //  user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
+            user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае. Тестирование показывает, что пароли
             // не совпадают, даже если в UI пароль не меняю
         }
         userDao.editUser(user);
