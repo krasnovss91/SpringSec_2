@@ -6,7 +6,6 @@ import web.model.User;
 
 import java.util.List;
 
-//@Transactional
 public interface UserService {
     void saveUser(User user);
 

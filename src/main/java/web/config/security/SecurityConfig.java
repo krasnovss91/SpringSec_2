@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import web.config.security.handler.LoginSuccessHandler;
 import web.config.security.userdetails.UserDetailsServiceImpl;
@@ -39,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                    // .antMatchers("/admin/**").permitAll()
                    // .antMatchers("/user/**").permitAll()
                     .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                //    .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN","ROLE_HR")
                     .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                     .anyRequest().authenticated()
                     .and()
