@@ -52,7 +52,8 @@ public class UserServiceImpl implements UserService {
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//этот метод принимает нешифрованные пароли
-            user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
+           // user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
+            user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае
         }
         userDao.editUser(user);
     }
