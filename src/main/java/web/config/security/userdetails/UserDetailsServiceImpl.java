@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     EntityManager entityManager;
 
     @Override
-    // @Transactional
+   //@Transactional
     public UserDetails loadUserByUsername(String username) {
         Query query = entityManager.createQuery("SELECT e FROM User e join fetch e.roles where e.username =: username");
 
