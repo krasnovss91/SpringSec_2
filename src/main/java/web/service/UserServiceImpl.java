@@ -51,9 +51,11 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//этот метод принимает нешифрованные пароли
-           // user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
-            user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае
+         //  user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
+           user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае. Тестирование показывает, что пароли
+            // не совпадают, даже если в UI пароль не меняю
         }
         userDao.editUser(user);
     }
