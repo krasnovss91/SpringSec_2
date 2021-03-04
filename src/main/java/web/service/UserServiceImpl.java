@@ -51,12 +51,13 @@ public class UserServiceImpl implements UserService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         String encodedPassword = passwordEncoder.encode(password);
-
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//принимает первый пароль только в нешифрованном виде
+       // if(!encodedPassword.equals(userFromDB.getPassword())){
              // user.setPassword(password);//так не перезаписывается, если не изменять. Но если изменяю, сетится в нешифрованном виде
-          //  user.setPassword(passwordEncoder.encode(password));//ещё раз шифровать нельзя, иначе перезаписывается каждый раз
+         //   user.setPassword(passwordEncoder.encode(password));//ещё раз шифровать нельзя, иначе перезаписывается каждый раз
             user.setPassword(encodedPassword);//так тоже перезаписывается каждый раз
         }
+      //  user.setPassword(passwordEncoder.encode(user.getPassword()));
         setUserRoles(user);
         userDao.editUser(user);
     }
