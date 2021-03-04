@@ -17,9 +17,6 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
-    //@Autowired
-    //PasswordEncoder passwordEncoder;
-
     @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
@@ -50,15 +47,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(User user, String password) {
-        setUserRoles(user);
-        User userFromDB = userDao.getUserById(user.getId());
+        User userFromDB = userDao.getUserById(user.getId());//берём юзера из бд по ID юзера с UI
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//этот метод принимает нешифрованные пароли
-            //  user.setPassword(password);//если пароль не менять, проблем нет. Если менять-меняет на нешифрованный
-            user.setPassword(passwordEncoder.encode(password));//если так, то пароль меняется в любом случае. Тестирование показывает, что пароли
-            // не совпадают, даже если в UI пароль не меняю
+        if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//принимает первый пароль только в нешифрованном виде
+              user.setPassword(password);//так не перезаписывается, если не изменять. Но если изменяю, сетится в нешифрованном виде
+          //  user.setPassword(passwordEncoder.encode(password));//ещё раз шифровать нельзя, иначе перезаписывается каждый раз
         }
+        setUserRoles(user);
         userDao.editUser(user);
     }
 
