@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
 
         String password = user.getPassword();
-         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
@@ -53,14 +53,12 @@ public class UserServiceImpl implements UserService {
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        // if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
 
-            if (BCRYPT_PATTERN.matcher(password).matches()) {
-                      //если пароль не зашифрован-зашифровать
+            if (!BCRYPT_PATTERN.matcher(password).matches()) {
+                password = passwordEncoder.encode(password);
             }
-            // user.setPassword(passwordEncoder.encode(password));
-            user.setPassword(password);//должна быть проверка, зашифрован пароль или нет. Чтобы не шифровать по второму кругу (затирание паролей)
+            user.setPassword(password);
         }
         userDao.editUser(user);
     }
