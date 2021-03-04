@@ -10,12 +10,14 @@ import web.model.Role;
 import web.model.User;
 
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
+    Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -53,6 +55,10 @@ public class UserServiceImpl implements UserService {
 
         // if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
         if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
+
+            if (BCRYPT_PATTERN.matcher(password).matches()) {
+                      //если пароль не зашифрован-зашифровать
+            }
             // user.setPassword(passwordEncoder.encode(password));
             user.setPassword(password);//должна быть проверка, зашифрован пароль или нет. Чтобы не шифровать по второму кругу (затирание паролей)
         }
