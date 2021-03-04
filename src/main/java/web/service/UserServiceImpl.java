@@ -47,21 +47,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(User user, String password) {
-        User userFromDB = userDao.getUserById(user.getId());//берём юзера из бд по ID юзера с UI
+        setUserRoles(user);
+        User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        String encodedPassword = passwordEncoder.encode(password);
-        if (!passwordEncoder.matches(password, userFromDB.getPassword())) {//принимает первый пароль только в нешифрованном виде
-       // if(!encodedPassword.equals(userFromDB.getPassword())){
-             // user.setPassword(password);//так не перезаписывается, если не изменять. Но если изменяю, сетится в нешифрованном виде
-         //   user.setPassword(passwordEncoder.encode(password));//ещё раз шифровать нельзя, иначе перезаписывается каждый раз
-            user.setPassword(encodedPassword);//так тоже перезаписывается каждый раз
+        // if (!passwordEncoder.matches(passwordEncoder.encode(password), userFromDB.getPassword())) {
+        if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
+            // user.setPassword(passwordEncoder.encode(password));
+            user.setPassword(password);//должна быть проверка, зашифрован пароль или нет. Чтобы не шифровать по второму кругу (затирание паролей)
         }
-      //  user.setPassword(passwordEncoder.encode(user.getPassword()));
-        setUserRoles(user);
         userDao.editUser(user);
     }
-
 
     @Transactional
     public void setUserRoles(User user) {
