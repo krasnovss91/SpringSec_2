@@ -4,39 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import web.dao.UserDao;
 import web.model.User;
-import web.service.UserService;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-/*
     @Autowired
-    UserService userService;
-
- */
-    @PersistenceContext
-    EntityManager entityManager;
+    UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Query query = entityManager.createQuery("SELECT e FROM User e join fetch e.roles where e.username =: username");
+        User result = userDao.findUserByUsername(username);
 
-        query.setParameter("username", username);
-
-        User result = null;
-
-        try {
-            result = (User) query.getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return result;
-//запрос перенести в дао. здесь оставить конструкцию типа result= UserDao.loadUserByUsername(username)
+
     }
 }
