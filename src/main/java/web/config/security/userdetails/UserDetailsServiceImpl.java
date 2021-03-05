@@ -15,10 +15,11 @@ import javax.persistence.Query;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-
+/*
     @Autowired
     UserService userService;
 
+ */
     @PersistenceContext
     EntityManager entityManager;
 
@@ -29,13 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         query.setParameter("username", username);
 
         User result = null;
-//запрос перенести в дао. здесь оставить конструкцию типа result= UserDao.loadUserByUsername(username)
+
         try {
             result = (User) query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
-
+//запрос перенести в дао. здесь оставить конструкцию типа result= UserDao.loadUserByUsername(username)
     }
 }
