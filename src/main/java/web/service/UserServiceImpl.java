@@ -2,8 +2,10 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.config.security.SecurityConfig;
 import web.dao.UserDao;
 import web.model.Role;
 import web.model.User;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
     Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
     @Autowired
+    SecurityConfig securityConfig;
+
+    @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -28,8 +33,8 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
 
         String password = user.getPassword();
-        
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        PasswordEncoder passwordEncoder = securityConfig.passwordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
