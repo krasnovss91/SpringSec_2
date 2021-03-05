@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
     @Autowired
-    SecurityConfig securityConfig;
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -33,8 +33,7 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
 
         String password = user.getPassword();
-
-        PasswordEncoder passwordEncoder = securityConfig.passwordEncoder();
+        
         String encodedPassword = passwordEncoder.encode(password);
 
         user.setPassword(encodedPassword);
