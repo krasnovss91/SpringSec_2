@@ -29,6 +29,9 @@ public class UserServiceImpl implements UserService {
         setUserRoles(user);
 
         String password = user.getPassword();
+        
+       //   @Autowired
+      // PasswordEncoder passwordEncoder;
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(password);
 
@@ -48,17 +51,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user, String password) {
+    public void editUser(User user) {
         setUserRoles(user);
+        String password_1 = user.getPassword();
         User userFromDB = userDao.getUserById(user.getId());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
+ //       if (!passwordEncoder.matches(password, userFromDB.getPassword())) {
+        if(!password_1.equals(userFromDB.getPassword())){
 
-            if (!BCRYPT_PATTERN.matcher(password).matches()) {
-                password = passwordEncoder.encode(password);
+            if (!BCRYPT_PATTERN.matcher(password_1).matches()) {
+                password_1 = passwordEncoder.encode(password_1);
             }
-            user.setPassword(password);
+            user.setPassword(password_1);
         }
         userDao.editUser(user);
     }

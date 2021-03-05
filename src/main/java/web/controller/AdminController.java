@@ -40,8 +40,8 @@ public class AdminController {
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("user") User user, Model model, @RequestParam("password") String password){
-        userService.editUser(user, password);
+    public String editUser(@ModelAttribute("user") User user, Model model){
+        userService.editUser(user);
         model.addAttribute("user", user);
         return "redirect:/admin";
     }
