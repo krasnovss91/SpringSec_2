@@ -24,8 +24,6 @@ public class User implements UserDetails, Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-   // @ManyToMany(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @JoinTable(
