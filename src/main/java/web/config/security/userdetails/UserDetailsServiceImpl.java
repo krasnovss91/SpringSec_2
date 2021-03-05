@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         query.setParameter("username", username);
 
         User result = null;
-
+//запрос перенести в дао. здесь оставить конструкцию типа result= UserDao.loadUserByUsername(username)
         try {
             result = (User) query.getSingleResult();
         } catch (Exception e) {
